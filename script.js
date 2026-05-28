@@ -51,14 +51,14 @@
     "Divisi Biro":[
     {
     nama:"Dewi Hardiani",
-    foto:"asset/img/dewi.JPG",
+    foto:"asset/img/dewi.jpg",
     unit:"Kepala Biro",
     program:"Pengelolaan Aset",
     desc:"Penanggung Jawab dan Kepala Operasional Asrama KPMB Makassar."
     },
     {
     nama:"Ermi",
-    foto:"asset/img/ermi.jpg",
+    foto:"asset/img/ermi.jpg  ",
     unit:"Keuangan",
     program:"Persiapan Kegiatan",
     desc:"Penanggung Jawab Terhadap Pembukuan dan Pengelolaan Keuangan Asrama KPMB Makassar.."
