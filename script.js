@@ -52,21 +52,21 @@ const dataAnggota = {
       nama: "Dewi Hardiani",
       foto: "asset/img/dewi.jpg",
       unit: "Kepala Biro",
-      program: "Pengelolaan Aset",
+      program: "Moas Menabur Hut Asrama",
       desc: "Penanggung Jawab dan Kepala Operasional Asrama KPMB Makassar."
     },
     {
       nama: "Ermi",
       foto: "asset/img/ermi.jpg",
       unit: "Keuangan",
-      program: "Persiapan Kegiatan",
+      program:  "Moas Menabur Hut Asrama",
       desc: "Penanggung Jawab Terhadap Pembukuan dan Pengelolaan Keuangan Asrama KPMB Makassar."
     },
     {
       nama: "Andi Miftahul Jannah",
       foto: "asset/img/mita.jpg",
       unit: "Inventaris & Logistik",
-      program: "Pendataan Anggota",
+      program:  "Moas Menabur Hut Asrama",
       desc: "Penanggung Jawab Terhadap Pengelolaan Inventaris Organisasi Serta Pengadaan Kelengkapan dan Logistik Organisasi."
     }
   ]
