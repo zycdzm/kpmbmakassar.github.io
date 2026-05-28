@@ -57,7 +57,7 @@ const dataAnggota = {
     },
     {
       nama: "Ermi",
-      foto: "asset/img/ermi.jpg",
+      foto: "asset/img/ermi.png",
       unit: "Keuangan",
       program:  "Moas Menabur Hut Asrama",
       desc: "Penanggung Jawab Terhadap Pembukuan dan Pengelolaan Keuangan Asrama KPMB Makassar."
@@ -334,3 +334,53 @@ setInterval(() => {
   if (heroIndex >= heroImages.length) heroIndex = 0;
   updateHero();
 }, 5000);
+const beritaData = [
+  {
+    img: "asset/img/forta.jpeg",
+    judul: "Kenaikan UMK 2026",
+    isi: "Ini adalah isi berita pertama. Kamu bisa tulis penjelasan lengkap tentang kenaikan UMK 2026 di sini."
+  },
+  {
+    img: "asset/img/forta1.jpeg",
+    judul: "Kota Minyak yang Tak Berminyak",
+    isi: "Ini adalah isi berita kedua. Kamu bisa tulis penjelasan lengkap tentang isu Balikpapan di sini."
+  },
+  {
+    img: "asset/img/forta3.jpeg",
+    judul: "Balikpapan City Series",
+    isi: "Ini adalah isi berita ketiga. Kamu bisa tulis isi artikel atau penjelasan lengkap di sini."
+  }
+];
+
+function bukaBerita(index){
+  const data = beritaData[index];
+
+  const img = document.getElementById("beritaModalImg");
+  const judul = document.getElementById("beritaModalJudul");
+  const isi = document.getElementById("beritaModalIsi");
+
+  img.src = data.img;
+  judul.textContent = data.judul;
+  isi.textContent = data.isi;
+
+  img.classList.remove("zoomed");
+
+  document.getElementById("beritaModal").classList.add("active");
+  setupBeritaZoom();
+}
+
+function closeBerita(){
+  const modal = document.getElementById("beritaModal");
+  const img = document.getElementById("beritaModalImg");
+
+  modal.classList.remove("active");
+  if (img) img.classList.remove("zoomed");
+}
+function setupBeritaZoom() {
+  const img = document.getElementById("beritaModalImg");
+  if (!img) return;
+
+  img.onclick = function () {
+    this.classList.toggle("zoomed");
+  };
+}   

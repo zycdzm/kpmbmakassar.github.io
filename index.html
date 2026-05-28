@@ -135,7 +135,12 @@
   </div>
   <div class="box">
       <img src="asset/img/samuel.jpg">
-      <h3>Unit Kemahasiswaan dan Informasi Komunikasi</h3>
+      <h3>Unit Kemahasiswaan dan </h3>
+      <p>Samuel Putra Natama Lumban Gaol</p>
+  </div>
+  <div class="box">
+      <img src="asset/img/samuel.jpg">
+      <h3> Unit Informasi Komunikasi</h3>
       <p>Samuel Putra Natama Lumban Gaol</p>
   </div>
   <div class="box">
@@ -149,7 +154,7 @@
       <p>Dewi Hardiani</p>
   </div>
   <div class="box">
-      <img src="asset/img/ermi.jpg">
+      <img src="asset/img/ermi.png">
       <h3>Unit Keuangan</h3>
       <p>Ermi</p>  
   </div>  
@@ -212,19 +217,43 @@
 <section class="page container" id="berita">
   <h2>Berita & Update</h2>
 
-  <div class="cards">
-    <div class="card">
-      <h3>KPMB Gelar Makrab 2026</h3>
-      <p>Makrab sukses mempererat kebersamaan anggota baru.</p>
+  <div class="berita-grid">
+
+    <div class="berita-card" onclick="bukaBerita(0)">
+      <img src="asset/img/forta.jpeg" alt="Kenaikan UMK 2026">
+      <div class="berita-overlay">
+        <h3>Kenaikan UMK 2026</h3>
+        <p>Klik untuk membaca</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Kunjungan Sosial ke Panti</h3>
-      <p>Kegiatan sosial bersama anggota dan alumni.</p>
+    <div class="berita-card" onclick="bukaBerita(1)">
+      <img src="asset/img/forta1.jpeg" alt="Kota Minyak yang Tak Berminyak">
+      <div class="berita-overlay">
+        <h3>Kota Minyak yang Tak Berminyak</h3>
+        <p>Klik untuk membaca</p>
+      </div>
     </div>
+
+    <div class="berita-card" onclick="bukaBerita(2)">
+      <img src="asset/img/forta3.jpeg" alt="Balikpapan City Series">
+      <div class="berita-overlay">
+        <h3>Balikpapan City Series</h3>
+        <p>Klik untuk membaca</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
+<div id="beritaModal" class="berita-modal" onclick="tutupBerita(event)">
+  <div class="berita-popup">
+    <button class="close-popup" onclick="closeBerita()">✕</button>
+    <img id="beritaModalImg" src="" alt="">
+    <h2 id="beritaModalJudul"></h2>
+    <p id="beritaModalIsi"></p>
+  </div>
+</div>
 <!-- ================= GALERI ================= -->
 <section class="page container" id="galeri">
   <h2>Galeri Kegiatan</h2>
@@ -265,7 +294,7 @@
       <span>Instagram</span>
     </a>
 
-    <a href="https://youtube.com/KPMB MAKASSAR" target="_blank">
+    <a href="https://youtube.com/kpmbmscmakassar" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
       <span>YouTube</span>
     </a>
@@ -1377,11 +1406,6 @@
       <td>2019</td>
     </tr>
     <tr>
-      <td>Satria Aji Ibnu Salim</td>
-      <td>Universitas Hasanuddin</td>
-      <td>2019</td>
-    </tr>
-    <tr>
       <td>Andi M. Murfid Muqsith</td>
       <td>Universitas Bosowa</td>
       <td>2019</td>
@@ -1397,18 +1421,8 @@
       <td>2021</td>
     </tr>
     <tr>
-      <td>Muh. Resky Ramadhan</td>
-      <td>Universitas Negeri Makassar</td>
-      <td>2022</td>
-    </tr>
-    <tr>
       <td>Muhammad Khadafi Karim Abdullah</td>
       <td>Universitas Islam Negeri</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <td>Yuniar Angraeni</td>
-      <td>Universitas Negeri Makassar</td>
       <td>2022</td>
     </tr>
     <tr>
@@ -1452,11 +1466,6 @@
       <td>2023</td>
     </tr>
     <tr>
-      <td>Jihan Assyfa Alyaa</td>
-      <td>Universitas hasanuddin</td>
-      <td>2023</td>
-    </tr>
-    <tr>
       <td>Andi Nadila</td>
       <td>Universitas Hasanuddin</td>
       <td>2024</td>
@@ -1494,11 +1503,6 @@
     <tr>
       <td>Adharian Nur Al Janni</td>
       <td>Universitas Bosowa</td>
-      <td>2024</td>
-    </tr>
-    <tr>
-      <td>Athifah Mardhiyah</td>
-      <td>Universitas Hasanuddin</td>
       <td>2024</td>
     </tr>
     <tr>
@@ -1567,16 +1571,14 @@
 
       <h3>Visi</h3>
       <p>
-      Menjadi wadah kebersamaan mahasiswa Balikpapan di Makassar
-      yang mampu membangun solidaritas, mengembangkan potensi anggota,
-      serta memberikan kontribusi positif bagi masyarakat dan daerah.
+      Menghasilkan Sumber Daya Manusia (SDM) yang berkualitas dan menjadi
+      tuan di rumah sendiri.
       </p>
 
       <h3>Misi</h3>
-      <p>1. Membangun rasa kekeluargaan antar anggota.</p>
-      <p>2. Mengembangkan potensi akademik dan non akademik.</p>
-      <p>3. Menyelenggarakan kegiatan sosial dan kemahasiswaan.</p>
-      <p>4. Menjadi wadah komunikasi mahasiswa Balikpapan di Makassar.</p>
+      <p>1. Membentuk kader-kader intelektual yang berguna bagi nusa dan bangsa.</p>
+      <p>2. Membentuk rumusan-rumusan dalam menanggapi segala bentuk fenomena yang terjadi di Kota Balikpapan.</p>
+      <p>3.Menjadi pelopor dan pengabdi demi pengembangan Kota Balikpapan.</p>
 
     </div>
 
@@ -1592,37 +1594,17 @@
     <h2>Nilai Organisasi KPMB</h2>
 
     <div class="nilai-box">
-
-      <h3>Kekeluargaan</h3>
       <p>
-      Kekeluargaan merupakan nilai yang menekankan pentingnya hubungan yang hangat,
-      saling menghargai, dan saling mendukung antar anggota organisasi.
-      Melalui kekeluargaan, setiap anggota merasa menjadi bagian dari satu
-      keluarga besar yang saling menjaga dan membantu satu sama lain.
+     <H3>PASAL 5 (ASAS)</H3>
+
+      Keluarga Pelajar Mahasiswa Balikpapan (KPMB) Makassar berasaskan kekeluargaan dan musyawarah untuk mencapai mufakat.</p>
+      </p>
+     <H3>PASAL 6 (SIFAT)</H3>
+
+      Keluarga Pelajar Mahasiswa Balikpapan (KPMB) Makassar bersifat sosial, ilmiah dan kekeluargaan.
       </p>
 
-      <h3>Solidaritas</h3>
-      <p>
-      Solidaritas adalah rasa kebersamaan dan kesediaan untuk saling membantu
-      dalam mencapai tujuan organisasi. Nilai ini menumbuhkan sikap saling
-      percaya, saling menghargai, serta memperkuat persatuan antar anggota.
-      </p>
-
-      <h3>Integritas</h3>
-      <p>
-      Integritas berkaitan dengan kejujuran, tanggung jawab, dan konsistensi
-      antara perkataan dan tindakan. Dengan menjunjung tinggi integritas,
-      setiap anggota diharapkan mampu menjaga kepercayaan serta menjalankan
-      tugas dengan penuh tanggung jawab.
-      </p>
-
-      <h3>Kepemimpinan</h3>
-      <p>
-      Kepemimpinan adalah kemampuan untuk mengarahkan, memotivasi,
-      dan menginspirasi orang lain dalam mencapai tujuan bersama.
-      Nilai ini mendorong setiap anggota untuk berani mengambil
-      inisiatif serta memberikan kontribusi positif bagi organisasi.
-      </p>
+ 
 
     </div>
 
