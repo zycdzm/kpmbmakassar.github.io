@@ -206,10 +206,8 @@ function initBook() {
 }
 
 function bukaSejarah() {
-
   const modal = document.getElementById("bookModal");
-
-  modal.style.display = "flex";
+  modal.classList.add("active");
 
   setTimeout(() => {
     initBook();
@@ -217,8 +215,8 @@ function bukaSejarah() {
 }
 
 function closeSejarah() {
-
-  document.getElementById("bookModal").style.display = "none";
+  const modal = document.getElementById("bookModal");
+  modal.classList.remove("active");
 
   if (pageFlip) {
     pageFlip.destroy();
@@ -406,69 +404,5 @@ window.addEventListener("resize", function () {
   updateHero();
 
   },5000)
-let pageFlip = null;
 
-function getBookSize() {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
 
-  if (w <= 480) {
-    return { width: w * 0.94, height: h * 0.72 };
-  }
-
-  if (w <= 768) {
-    return { width: w * 0.88, height: h * 0.75 };
-  }
-
-  return { width: 450, height: 600 };
-}
-
-function initBook() {
-  const bookEl = document.getElementById("book");
-  if (!bookEl) return;
-
-  if (pageFlip) {
-    pageFlip.destroy();
-    pageFlip = null;
-  }
-
-  const size = getBookSize();
-
-  pageFlip = new St.PageFlip(bookEl, {
-    width: size.width,
-    height: size.height,
-    size: "stretch",
-    showCover: true,
-    usePortrait: true,
-    autoSize: true,
-    maxShadowOpacity: 0.4,
-    mobileScrollSupport: true
-  });
-
-  const pages = [];
-  for (let i = 1; i <= 127; i++) {
-    pages.push(`asset/book/page${i}.jpg`);
-  }
-
-  pageFlip.loadFromImages(pages);
-}
-
-function bukaSejarah() {
-  document.getElementById("bookModal").style.display = "flex";
-  setTimeout(initBook, 100);
-}
-
-function closeSejarah() {
-  document.getElementById("bookModal").style.display = "none";
-  if (pageFlip) {
-    pageFlip.destroy();
-    pageFlip = null;
-  }
-}
-
-window.addEventListener("resize", function () {
-  const modal = document.getElementById("bookModal");
-  if (modal && modal.style.display === "flex") {
-    initBook();
-  }
-});  
