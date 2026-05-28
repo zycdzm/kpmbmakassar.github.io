@@ -682,3 +682,37 @@ body{
     font-size:13px;
   }
 }
+/* ================= SOSMED FOOTER ================= */
+
+/* ================= FOOTER SOSMED ================= */
+
+.sosmed-footer{
+  margin:18px 0;
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.sosmed-footer a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:#fff;
+  background:#333;
+  padding:10px 18px;
+  border-radius:12px;
+  transition:0.3s;
+  font-weight:500;
+}
+
+.sosmed-footer a img{
+  width:22px;
+  height:22px;
+}
+
+.sosmed-footer a:hover{
+  background:#555;
+  transform:translateY(-3px);
+}
