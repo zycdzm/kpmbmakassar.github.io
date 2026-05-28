@@ -137,9 +137,36 @@
 });
     // ================== FLIPBOOK ==================
 
-  let pageFlip = null;
+ // ================== FLIPBOOK ==================
+
+let pageFlip = null;
+
+function getBookSize() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  if (w <= 480) {
+    return {
+      width: w * 0.94,
+      height: h * 0.72
+    };
+  }
+
+  if (w <= 768) {
+    return {
+      width: w * 0.88,
+      height: h * 0.75
+    };
+  }
+
+  return {
+    width: 450,
+    height: 600
+  };
+}
 
 function initBook() {
+
   const bookEl = document.getElementById("book");
 
   if (!bookEl) return;
@@ -149,18 +176,21 @@ function initBook() {
     pageFlip = null;
   }
 
+  const size = getBookSize();
+
   pageFlip = new St.PageFlip(bookEl, {
-    width: 450,
-    height: 600,
-    size: "fixed",
+    width: size.width,
+    height: size.height,
+    size: "stretch",
     showCover: true,
     usePortrait: true,
     autoSize: true,
-    maxShadowOpacity: 0.5,
+    maxShadowOpacity: 0.4,
     mobileScrollSupport: true
   });
 
   const pages = [];
+
   for (let i = 1; i <= 127; i++) {
     pages.push(`asset/book/page${i}.jpg`);
   }
@@ -169,10 +199,17 @@ function initBook() {
 
   document.getElementById("currentPage").textContent = 1;
   document.getElementById("totalPage").textContent = pages.length;
+
+  pageFlip.on("flip", (e) => {
+    document.getElementById("currentPage").textContent = e.data + 1;
+  });
 }
 
 function bukaSejarah() {
-  document.getElementById("bookModal").style.display = "flex";
+
+  const modal = document.getElementById("bookModal");
+
+  modal.style.display = "flex";
 
   setTimeout(() => {
     initBook();
@@ -180,6 +217,7 @@ function bukaSejarah() {
 }
 
 function closeSejarah() {
+
   document.getElementById("bookModal").style.display = "none";
 
   if (pageFlip) {
@@ -189,6 +227,7 @@ function closeSejarah() {
 }
 
 document.addEventListener("click", function (e) {
+
   if (!pageFlip) return;
 
   if (e.target.classList.contains("next")) {
@@ -197,6 +236,15 @@ document.addEventListener("click", function (e) {
 
   if (e.target.classList.contains("prev")) {
     pageFlip.flipPrev("bottom");
+  }
+});
+
+window.addEventListener("resize", function () {
+
+  const modal = document.getElementById("bookModal");
+
+  if (modal && modal.style.display === "flex") {
+    initBook();
   }
 });
 
