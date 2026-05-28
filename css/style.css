@@ -430,6 +430,8 @@ body{
 
 /* ================= FLIPBOOK ================= */
 
+/* ================= FLIPBOOK ================= */
+
 #bookModal{
   display:none;
   position:fixed;
@@ -438,6 +440,7 @@ body{
   background:rgba(0,0,0,0.85);
   justify-content:center;
   align-items:center;
+  padding:12px;
 }
 
 #bookModal.active{
@@ -446,7 +449,7 @@ body{
 
 .book-wrapper{
   position:relative;
-  width:min(90vw,450px);
+  width:min(96vw,450px);
   margin:auto;
   display:flex;
   justify-content:center;
@@ -455,13 +458,13 @@ body{
 
 #book{
   width:100%;
-  height:min(80vh,600px);
+  height:min(72vh,600px);
 }
 
 #book img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
 }
 
 .book-wrapper .nav{
@@ -472,22 +475,22 @@ body{
   background:#fff;
   border:none;
   cursor:pointer;
-  font-size:32px;
-  padding:8px 14px;
+  font-size:28px;
+  padding:6px 12px;
   border-radius:8px;
 }
 
 .book-wrapper .prev{
-  left:-60px;
+  left:6px;
 }
 
 .book-wrapper .next{
-  right:-60px;
+  right:6px;
 }
 
 .page-number{
   position:absolute;
-  bottom:-35px;
+  bottom:-44px;
   left:50%;
   transform:translateX(-50%);
   font-size:14px;
@@ -497,6 +500,26 @@ body{
   box-shadow:0 2px 6px rgba(0,0,0,.2);
 }
 
+@media(max-width:768px){
+
+  .book-wrapper{
+    width:95vw;
+  }
+
+  #book{
+    height:70vh;
+  }
+
+  .book-wrapper .nav{
+    font-size:24px;
+    padding:5px 10px;
+  }
+
+  .page-number{
+    bottom:-50px;
+    font-size:13px;
+  }
+}
 /* ================= DIVISI ================= */
 
 #divisi{
