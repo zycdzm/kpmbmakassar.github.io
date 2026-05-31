@@ -1,3 +1,12 @@
+
+:root{
+  --primary:#3B3D35;
+  --secondary:#7694A3;
+  --accent:#91AFB2;
+  --bg:#DDD1C6;
+  --white:#ffffff;
+}
+
 *{
   margin:0;
   padding:0;
@@ -6,8 +15,8 @@
 }
 
 body{
-  background:#f5f7fa;
-  color:#222;
+  background:var(--bg);
+  color:var(--primary);
 }
 
 .container{
@@ -75,7 +84,7 @@ body{
 
 .navbar a{
     text-decoration:none;
-    color:#222;
+    color:var(--primary);
     font-size:1.1rem;
     font-weight:500;
     transition:.3s;
@@ -83,7 +92,7 @@ body{
 }
 
 .navbar a:hover{
-    color:#0066ff;
+    color:var(--secondary);
 }
 
 .navbar a::after{
@@ -93,7 +102,7 @@ body{
     bottom:-8px;
     width:0;
     height:3px;
-    background:#0066ff;
+    background:var(--secondary);
     transition:.3s;
 }
 
@@ -329,7 +338,7 @@ body{
 
 .site-footer{
   margin-top:50px;
-  background:#222;
+  background:var(--primary);
   color:#fff;
   text-align:center;
   padding:15px;
@@ -420,7 +429,7 @@ body{
 }
 
 .tab-menu button:hover{
-  background:#333;
+  background:var(--primary);
   color:#fff;
 }
 
@@ -445,7 +454,7 @@ body{
 }
 
 .db-table th{
-  background:#222;
+  background:var(--primary);
   color:#fff;
   padding:12px;
 }
@@ -808,7 +817,7 @@ body{
   gap:10px;
   text-decoration:none;
   color:#fff;
-  background:#333;
+  background:var(--primary);
   padding:10px 18px;
   border-radius:12px;
   transition:0.3s;
@@ -957,7 +966,7 @@ body{
 }
 
 .stat-box{
-  background:#f8fafc;
+  background:var(--secondary);
   padding:30px;
   border-radius:16px;
   text-align:center;
@@ -971,12 +980,12 @@ body{
 
 .stat-box h2{
   font-size:42px;
-  color:#0f172a;
+  color:#ebecee;
 }
 
 .stat-box p{
   margin-top:8px;
-  color:#555;
+  color:#fffbfb;
 }
 .ketua-section{
   padding:70px 0;
@@ -1081,7 +1090,7 @@ body{
   min-width:80px;
   height:80px;
 
-  background:#111827;
+  background:var(--primary);
   color:#fff;
 
   border-radius:18px;
@@ -1252,7 +1261,7 @@ body{
   top:0;
   width:4px;
   height:100%;
-  background:#0f172a;
+  background:var(--primary);
   border-radius:10px;
 }
 
@@ -1268,7 +1277,7 @@ body{
   width:20px;
   height:20px;
   border-radius:50%;
-  background:#0f172a;
+  background:var(--primary);
   border:4px solid #fff;
   box-shadow:0 0 0 4px rgba(15,23,42,.15);
 }
@@ -1288,7 +1297,7 @@ body{
 .timeline-content span{
   display:inline-block;
   margin-bottom:10px;
-  background:#0f172a;
+  background:var(--primary);
   color:#fff;
   padding:6px 14px;
   border-radius:30px;
@@ -1368,7 +1377,7 @@ body{
 .proker-header{
   width:100%;
   border:none;
-  background:#0057b8;
+  background:var(--primary);
   color:#fff;
   padding:22px 30px;
   font-size:22px;
@@ -1392,7 +1401,7 @@ body{
 
 /* Nama Program Kerja */
 .proker-content h3{
-  color:#0057b8;
+  color:var(--primary);
   font-size:24px;
   margin-bottom:15px;
   margin-top:10px;
@@ -1400,7 +1409,7 @@ body{
 
 /* Sub Judul */
 .proker-content h4{
-  color:#0f172a;
+  color:var(--primary);
   margin:15px 0 8px;
   font-size:18px;
 }
@@ -1423,4 +1432,82 @@ body{
 
 .proker-header.active span{
   transform:rotate(45deg);
+}
+/* ================= MOBILE FIX ================= */
+
+@media (max-width: 768px){
+
+  .header-top{
+    padding:12px 15px;
+  }
+
+  .logo{
+    gap:10px;
+  }
+
+  .logo-img{
+    width:50px;
+    height:50px;
+  }
+
+  .logo-text h1{
+    font-size:20px;
+  }
+
+  .logo-text p{
+    font-size:12px;
+  }
+
+  .dark-btn{
+    padding:8px 12px;
+    font-size:13px;
+  }
+
+  /* Navbar scroll horizontal */
+  .navbar{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding:12px;
+    gap:18px;
+
+    scrollbar-width:none;
+  }
+
+  .navbar::-webkit-scrollbar{
+    display:none;
+  }
+
+  .navbar a{
+    white-space:nowrap;
+    font-size:14px;
+    flex-shrink:0;
+  }
+
+  /* Program Kerja */
+  .proker-header{
+    padding:16px 18px;
+    font-size:18px;
+  }
+
+  .proker-content{
+    padding:20px;
+  }
+
+  .proker-content h3{
+    font-size:22px;
+  }
+
+  .proker-content h4{
+    font-size:17px;
+  }
+
+  .proker-content p{
+    font-size:15px;
+    line-height:1.8;
+  }
+
+  /* Container */
+  .container{
+    width:95%;
+  }
 }
