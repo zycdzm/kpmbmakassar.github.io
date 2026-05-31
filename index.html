@@ -7,39 +7,45 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <header class="site-header">
-  <div class="container header-flex">
+
+  <div class="header-top">
 
     <div class="logo">
       <img src="asset/img/logo.png.png" class="logo-img">
-      <div>
+
+      <div class="logo-text">
         <h1>KPMB Makassar</h1>
         <p>Keluarga Pelajar Mahasiswa Balikpapan</p>
       </div>
     </div>
-    <nav class="navbar">
-  <a onclick="showPage('home')">Beranda</a>
-  <a onclick="showPage('tentang')">Tentang</a>
-  <a onclick="showPage('struktur')">Pengurus</a>
-  <a onclick="showPage('divisi')">Divisi</a>
-  <a onclick="showPage('program')">Program</a>
-  <a onclick="showPage('berita')">Berita</a>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSe8jGoWFxSE7pTYZ7QPN3ruIYFSacEZxzEukiRrInnYF1o7lA/viewform?pli=1" target="_blank">Registrasi</a>
-
-  <a onclick="showPage('galeri')">Galeri</a>
-  <a href="https://mabiro.respacestudio.id/" target="_blank">Mabiro</a>
-</nav>
+    <button id="darkToggle" class="dark-btn">
+      🌞 Light Mode
+    </button>
 
   </div>
+
+  <nav class="navbar">
+    <a onclick="showPage('home')">Beranda</a>
+    <a onclick="showPage('tentang')">Tentang</a>
+    <a onclick="showPage('struktur')">Pengurus</a>
+    <a onclick="showPage('divisi')">Divisi</a>
+   <li onclick="showPage('program-kerja')">Program</li>
+    <a onclick="showPage('berita')">Berita</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe8jGoWFxSE7pTYZ7QPN3ruIYFSacEZxzEukiRrInnYF1o7lA/viewform?pli=1" target="_blank">Registrasi</a>
+    <a onclick="showPage('galeri')">Galeri</a>
+    <a href="https://mabiro.respacestudio.id/" target="_blank">Mabiro</a>
+  </nav>
+
 </header>
 
 <!-- ================= HOME ================= -->
-<!-- ================= HOME ================= -->
 <section class="page active" id="home">
 
+  <!-- HERO -->
   <section class="hero">
-
     <button class="hero-prev">‹</button>
     <button class="hero-next">›</button>
 
@@ -47,11 +53,205 @@
       <h1>Selamat datang di KPMB Makassar</h1>
       <p>Wadah kebersamaan mahasiswa Balikpapan di Makassar</p>
     </div>
+  </section>
+
+  <!-- FAQ SINGKAT -->
+  <section class="page container" id="faq-home">
+    <h2>Pertanyaan Umum</h2>
+
+    <div class="card">
+      <h3>Siapa yang bisa bergabung di KPMB?</h3>
+      <p>Mahasiswa asal Balikpapan yang kuliah di Makassar.</p>
+
+      <h3>Apa tujuan organisasi ini?</h3>
+      <p>Membangun kebersamaan mahasiswa daerah.</p>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="agenda-section reveal">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Agenda KPMB</h2>
+        <p>Kegiatan dan event terbaru KPMB Makassar</p>
+      </div>
+
+      <div class="agenda-grid">
+
+        <div class="agenda-card">
+          <div class="agenda-date">
+            <h3>23</h3>
+            <span>Mei</span>
+          </div>
+
+          <div class="agenda-content">
+            <h3>Donor Darah KPMB</h3>
+            <p>Kegiatan sosial donor darah bersama PMI dan warga KPMB Makassar.</p>
+
+            <div class="agenda-info">
+              <span>🕒 13.00 WITA</span>
+              <span>📍 Aula KPMB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="agenda-card">
+          <div class="agenda-date">
+            <h3>12</h3>
+            <span>Juni</span>
+          </div>
+
+          <div class="agenda-content">
+            <h3>Makrab KPMB</h3>
+            <p>Malam keakraban dan penguatan solidaritas antar anggota KPMB.</p>
+
+            <div class="agenda-info">
+              <span>🕒 19.00 WITA</span>
+              <span>📍 Villa Malino</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="agenda-card">
+          <div class="agenda-date">
+            <h3>05</h3>
+            <span>Juli</span>
+          </div>
+
+          <div class="agenda-content">
+            <h3>Seminar Pendidikan</h3>
+            <p>Seminar pengembangan mahasiswa dan leadership bersama alumni.</p>
+
+            <div class="agenda-info">
+              <span>🕒 09.00 WITA</span>
+              <span>📍 Aula Kampus</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
 
   </section>
 
+  <!-- TESTIMONI -->
+  <section class="testimoni-section reveal">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Kata Alumni</h2>
+        <p>Pesan dan kesan alumni untuk KPMB Makassar</p>
+      </div>
+
+      <div class="testimoni-grid">
+
+        <div class="testi-card">
+          <img src="asset/img/alumni1.jpg" alt="">
+          <p>“KPMB bukan hanya tempat berkumpul, tapi rumah kedua selama merantau di Makassar.”</p>
+          <h3>Rahmat Hidayat</h3>
+          <span>Alumni 2022</span>
+        </div>
+
+        <div class="testi-card">
+          <img src="asset/img/alumni2.jpg" alt="">
+          <p>“Banyak pengalaman organisasi, relasi, dan pembelajaran hidup yang saya dapatkan di KPMB.”</p>
+          <h3>Siti Aulia</h3>
+          <span>Alumni 2021</span>
+        </div>
+
+        <div class="testi-card">
+          <img src="asset/img/alumni3.jpg" alt="">
+          <p>“Semoga KPMB terus berkembang dan menjadi tempat lahirnya mahasiswa hebat dari Balikpapan.”</p>
+          <h3>Fajar Nugraha</h3>
+          <span>Alumni 2020</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FAQ DETAIL -->
+  <section class="faq-section reveal">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>FAQ KPMB</h2>
+        <p>Pertanyaan yang sering ditanyakan</p>
+      </div>
+
+      <div class="faq-container">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Apa itu KPMB Makassar?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>KPMB Makassar adalah organisasi mahasiswa asal Balikpapan yang sedang menempuh pendidikan di Makassar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Bagaimana cara bergabung?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>Kamu bisa menghubungi pengurus KPMB melalui Instagram, WhatsApp, atau datang langsung ke sekretariat.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Apa saja kegiatan KPMB?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>KPMB memiliki kegiatan sosial, pendidikan, pengembangan SDM, olahraga, seminar, hingga pengabdian masyarakat.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <section class="stats-section">
+
+  <div class="stat-box">
+    <h2>200+</h2>
+    <p>Alumni</p>
+  </div>
+
+  <div class="stat-box">
+    <h2>15+</h2>
+    <p>Anggota Aktif</p>
+  </div>
+
+  <div class="stat-box">
+    <h2>10+</h2>
+    <p>Kegiatan</p>
+  </div>
+
+  <div class="stat-box">
+    <h2>10+</h2>
+    <p>Kampus</p>
+  </div>
+
 </section>
 
+</section>
+<!-- AKHIR HOME -->
   <!-- ================= TENTANG ================= -->
 <section class="page container" id="tentang">
   <h2>Tentang KPMB Makassar</h2>
@@ -192,27 +392,198 @@
 </section>
 
 <!-- ================= PROGRAM ================= -->
-<section class="page container" id="program">
-  <h2>Program Kerja Unggulan</h2>
+<section id="program-kerja" class="page container">
 
-  <div class="cards">
-    <div class="card">
-      <h3>Pembinaan Anggota</h3>
-      <p>Pelatihan kepemimpinan dan pengembangan soft skill.</p>
-    </div>
+  <div class="section-title">
+    <h2>Program Kerja</h2>
+    <p>Program kerja setiap bidang KPMB Makassar</p>
+  </div>
 
-    <div class="card">
-      <h3>Kegiatan Sosial</h3>
-      <p>Bakti sosial dan aksi kemanusiaan.</p>
-    </div>
+  <!-- PRESIDIUM -->
+  <div class="proker-item">
+    <button class="proker-header">
+      Presidium
+      <span>+</span>
+    </button>
 
-    <div class="card">
-      <h3>Kegiatan Budaya</h3>
-      <p>Pengenalan budaya Balikpapan melalui event seni.</p>
+    <div class="proker-content">
+
+      <h3>1. Member Of The Month</h3>
+      <h4>Latar Belakang</h4>
+      <p>Sebagai bentuk apresiasi terhadap partisipasi serta kontribusi Warga KPMB Makassar.</p>
+      <h4>Tujuan</h4>
+      <p>Meningkatkan semangat untuk berpartisipasi dalam kegiatan KPMB Makassar.</p>
+
+      <hr>
+
+      <h3>2. Musyawarah Warga Manuntung</h3>
+      <h4>Latar Belakang</h4>
+      <p>Berakhirnya masa kepengurusan KPMB Makassar periode 2025–2026.</p>
+      <h4>Tujuan</h4>
+      <p>Mengakhiri masa jabatan pengurus serta menjalankan MUSWAM sesuai AD/ART organisasi.</p>
+
+      <hr>
+
+      <h3>3. HUT KPMB Makassar</h3>
+      <h4>Latar Belakang</h4>
+      <p>Sebagai bentuk selebrasi terbentuknya KPMB Makassar.</p>
+      <h4>Tujuan</h4>
+      <p>Memperingati hari terbentuknya organisasi KPMB Makassar.</p>
+
+      <hr>
+
+      <h3>4. Triwulan</h3>
+      <h4>Latar Belakang</h4>
+      <p>Perlunya evaluasi dan proyeksi kinerja kepengurusan secara berkala.</p>
+      <h4>Tujuan</h4>
+      <p>Mengevaluasi capaian program kerja dan menyusun langkah kepengurusan selanjutnya.</p>
+
+      <hr>
+
+      <h3>5. Penyempurnaan Buku Sejarah</h3>
+      <h4>Latar Belakang</h4>
+      <p>Buku sejarah merupakan sumber penting dalam memahami perjalanan KPMB Makassar.</p>
+      <h4>Tujuan</h4>
+      <p>Mengenalkan sejarah KPMB Makassar dari awal hingga perkembangan terbaru.</p>
+
+      <hr>
+
+      <h3>6. Majalah</h3>
+      <h4>Latar Belakang</h4>
+      <p>Adanya rekomendasi MUSWAM XVIII untuk membuat majalah KPMB Makassar.</p>
+      <h4>Tujuan</h4>
+      <p>Sebagai sarana informasi, dokumentasi, dan publikasi kegiatan organisasi.</p>
+
     </div>
   </div>
-</section>
 
+  <!-- BIRO ASRAMA -->
+  <div class="proker-item">
+    <button class="proker-header">
+      Biro Asrama
+      <span>+</span>
+    </button>
+
+    <div class="proker-content">
+
+      <h3>1. HUT Asrama KPMB Makassar</h3>
+      <h4>Latar Belakang</h4>
+      <p>Pentingnya merayakan hari diresmikannya asrama sebagai bentuk rasa syukur.</p>
+      <h4>Tujuan</h4>
+      <p>Memperingati hari diresmikannya Asrama KPMB Makassar.</p>
+
+      <hr>
+
+      <h3>2. Menabur (Menanam dan Bertumbuh)</h3>
+      <h4>Latar Belakang</h4>
+      <p>Sebagai wadah bagi warga asrama untuk memanfaatkan lahan penghijauan.</p>
+      <h4>Tujuan</h4>
+      <p>Menciptakan lingkungan yang asri dan nyaman di Asrama KPMB Makassar.</p>
+
+    </div>
+  </div>
+
+  <!-- PSDM -->
+  <div class="proker-item">
+    <button class="proker-header">
+      PSDM
+      <span>+</span>
+    </button>
+
+    <div class="proker-content">
+
+      <h3>1. Latihan Dasar Kepemimpinan (LDK)</h3>
+      <h4>Latar Belakang</h4>
+      <p>Kegiatan yang mengacu pada Pedoman Kerja Organisasi sebagai proses kaderisasi.</p>
+      <h4>Tujuan</h4>
+      <p>Mengenalkan organisasi, membentuk kader baru, jiwa kepemimpinan, dan loyalitas.</p>
+
+      <hr>
+
+      <h3>2. Training Of Trainer (TOT)</h3>
+      <h4>Latar Belakang</h4>
+      <p>Sebagai tindak lanjut proses pengkaderan untuk menghasilkan trainer yang kompeten.</p>
+      <h4>Tujuan</h4>
+      <p>Meningkatkan kualitas SDM dan menghasilkan trainer baru yang kompeten.</p>
+
+      <hr>
+
+      <h3>3. Information In The Art (FORTA)</h3>
+      <h4>Latar Belakang</h4>
+      <p>Wadah informasi terbaru mengenai isu-isu yang berkembang di Kota Balikpapan.</p>
+      <h4>Tujuan</h4>
+      <p>Menjadi sarana penyaluran bakat dan media komunikasi informasi.</p>
+
+      <hr>
+
+      <h3>4. Majelis Manuntung</h3>
+      <h4>Latar Belakang</h4>
+      <p>Memberikan ruang diskusi, kajian, dan pengembangan diri bagi anggota.</p>
+      <h4>Tujuan</h4>
+      <p>Meningkatkan kapasitas anggota serta menumbuhkan nilai kekeluargaan.</p>
+
+      <hr>
+
+      <h3>5. Upgrading</h3>
+      <h4>Latar Belakang</h4>
+      <p>Proses lanjutan dalam mengenal organisasi dan meningkatkan kualitas anggota.</p>
+      <h4>Tujuan</h4>
+      <p>Meningkatkan kualitas SDM, rasa percaya diri, dan kemampuan anggota.</p>
+
+    </div>
+  </div>
+
+  <!-- HUMAS -->
+  <div class="proker-item">
+    <button class="proker-header">
+      Humas
+      <span>+</span>
+    </button>
+
+    <div class="proker-content">
+
+      <h3>1. Manuntung Peduli</h3>
+      <h4>Latar Belakang</h4>
+      <p>Membangun kepedulian warga KPMB Makassar terhadap lingkungan dan masyarakat.</p>
+      <h4>Tujuan</h4>
+      <p>Meningkatkan rasa kepedulian sosial kepada sesama.</p>
+
+      <hr>
+
+      <h3>2. History Of Learning</h3>
+      <h4>Latar Belakang</h4>
+      <p>Menelusuri dan memahami sejarah Makassar dari aspek sosial, budaya, dan perjuangan masyarakat.</p>
+      <h4>Tujuan</h4>
+      <p>Membagikan ilmu pengetahuan tentang sejarah Kota Makassar kepada warga.</p>
+
+      <hr>
+
+      <h3>3. Goes To School</h3>
+      <h4>Latar Belakang</h4>
+      <p>Perlunya memperkenalkan KPMB Makassar kepada siswa SMA/SMK di Balikpapan.</p>
+      <h4>Tujuan</h4>
+      <p>Mempromosikan KPMB Makassar dan memperkenalkan dunia perkuliahan.</p>
+
+      <hr>
+
+      <h3>4. Siniar Manuntung</h3>
+      <h4>Latar Belakang</h4>
+      <p>Memperkenalkan KPMB Makassar melalui media sosial dan digitalisasi kegiatan.</p>
+      <h4>Tujuan</h4>
+      <p>Mempublikasikan informasi tentang Kota Balikpapan dan KPMB Makassar.</p>
+
+      <hr>
+
+      <h3>5. Rebranding Website dan Informasi Database</h3>
+      <h4>Latar Belakang</h4>
+      <p>Pentingnya wadah informasi dan database yang terintegrasi melalui website.</p>
+      <h4>Tujuan</h4>
+      <p>Sebagai sarana komunikasi dan informasi internal maupun eksternal organisasi.</p>
+
+    </div>
+  </div>
+
+</section>
 <!-- ================= BERITA ================= -->
 <section class="page container" id="berita">
   <h2>Berita & Update</h2>
@@ -271,18 +642,6 @@
 </section>
 
 <!-- ================= FAQ ================= -->
-<section class="page container" id="faq">
-  <h2>Pertanyaan Umum</h2>
-
-  <div class="card">
-    <h3>Siapa yang bisa bergabung di KPMB?</h3>
-    <p>Mahasiswa asal Balikpapan yang kuliah di Makassar.</p>
-
-    <h3>Apa tujuan organisasi ini?</h3>
-    <p>Membangun kebersamaan mahasiswa daerah.</p>
-  </div>
-</section>
-
 
 <footer class="site-footer">
 

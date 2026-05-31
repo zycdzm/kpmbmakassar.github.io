@@ -73,19 +73,21 @@ const dataAnggota = {
 };
 
 // ================== PAGE NAVIGATION ==================
+function showPage(id){
 
-function showPage(id) {
-  document.querySelectorAll(".page").forEach((page) => {
-    page.classList.remove("active");
+  document.querySelectorAll('.page').forEach(page=>{
+    page.classList.remove('active');
   });
 
   const target = document.getElementById(id);
-  if (target) {
-    target.classList.add("active");
-    window.scrollTo(0, 0);
+
+  if(target){
+    target.classList.add('active');
+  }else{
+    document.getElementById('home').classList.add('active');
+    console.error('Halaman tidak ditemukan:', id);
   }
 }
-
 // ================== DIVISI ==================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -288,99 +290,185 @@ function closeNilai() {
 
 // ================== HERO SLIDER ==================
 
-const hero = document.querySelector(".hero");
+// ================== HERO SLIDER ==================
 
-const heroImages = [
-  "asset/img/selamat.jpg",
-  "asset/img/k1.jpg",
-  "asset/img/k2.jpg",
-  "asset/img/k3.jpg",
-  "asset/img/k4.jpg",
-  "asset/img/k5.jpeg"
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-let heroIndex = 0;
+  const hero = document.querySelector(".hero");
 
-function updateHero() {
-  if (!hero) return;
+  const heroImages = [
+    "asset/img/selamat.jpg",
+    "asset/img/k1.jpg",
+    "asset/img/k2.jpg",
+    "asset/img/k3.jpg",
+    "asset/img/k4.jpg",
+    "asset/img/k5.jpeg"
+  ];
 
-  hero.style.backgroundImage =
-    "linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url('" + heroImages[heroIndex] + "')";
-}
+  let heroIndex = 0;
 
-const heroNext = document.querySelector(".hero-next");
-const heroPrev = document.querySelector(".hero-prev");
+  function updateHero() {
+    if (!hero) return;
 
-if (heroNext) {
-  heroNext.onclick = function () {
+    hero.style.backgroundImage =
+      `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('${heroImages[heroIndex]}')`;
+  }
+
+  const heroNext = document.querySelector(".hero-next");
+  const heroPrev = document.querySelector(".hero-prev");
+
+  if (heroNext) {
+    heroNext.addEventListener("click", () => {
+      heroIndex++;
+      if (heroIndex >= heroImages.length) heroIndex = 0;
+      updateHero();
+    });
+  }
+
+  if (heroPrev) {
+    heroPrev.addEventListener("click", () => {
+      heroIndex--;
+      if (heroIndex < 0) heroIndex = heroImages.length - 1;
+      updateHero();
+    });
+  }
+
+  updateHero();
+
+  setInterval(() => {
     heroIndex++;
     if (heroIndex >= heroImages.length) heroIndex = 0;
     updateHero();
-  };
-}
+  }, 5000);
 
-if (heroPrev) {
-  heroPrev.onclick = function () {
-    heroIndex--;
-    if (heroIndex < 0) heroIndex = heroImages.length - 1;
-    updateHero();
-  };
-}
+});
 
-updateHero();
 
-setInterval(() => {
-  heroIndex++;
-  if (heroIndex >= heroImages.length) heroIndex = 0;
-  updateHero();
-}, 5000);
+// ================== BERITA ==================
+
 const beritaData = [
   {
     img: "asset/img/forta.jpeg",
-    judul: "Kenaikan UMK 2026",
-    isi: "Ini adalah isi berita pertama. Kamu bisa tulis penjelasan lengkap tentang kenaikan UMK 2026 di sini."
+    judul: "Forta KPMB",
+    isi: "Dokumentasi kegiatan Forta KPMB Makassar."
   },
   {
     img: "asset/img/forta1.jpeg",
-    judul: "Kota Minyak yang Tak Berminyak",
-    isi: "Ini adalah isi berita kedua. Kamu bisa tulis penjelasan lengkap tentang isu Balikpapan di sini."
+    judul: "Kegiatan Anggota",
+    isi: "Kegiatan kebersamaan anggota KPMB Makassar."
   },
   {
     img: "asset/img/forta3.jpeg",
     judul: "Balikpapan City Series",
-    isi: "Ini adalah isi berita ketiga. Kamu bisa tulis isi artikel atau penjelasan lengkap di sini."
+    isi: "Dokumentasi kegiatan city series."
   }
 ];
 
 function bukaBerita(index){
+
   const data = beritaData[index];
 
-  const img = document.getElementById("beritaModalImg");
-  const judul = document.getElementById("beritaModalJudul");
-  const isi = document.getElementById("beritaModalIsi");
+  document.getElementById("beritaModalImg").src = data.img;
+  document.getElementById("beritaModalJudul").textContent = data.judul;
+  document.getElementById("beritaModalIsi").textContent = data.isi;
 
-  img.src = data.img;
-  judul.textContent = data.judul;
-  isi.textContent = data.isi;
+  document
+    .getElementById("beritaModal")
+    .classList.add("active");
 
-  img.classList.remove("zoomed");
-
-  document.getElementById("beritaModal").classList.add("active");
-  setupBeritaZoom();
+  document
+    .getElementById("beritaModalImg")
+    .classList.remove("zoomed");
 }
 
 function closeBerita(){
-  const modal = document.getElementById("beritaModal");
-  const img = document.getElementById("beritaModalImg");
-
-  modal.classList.remove("active");
-  if (img) img.classList.remove("zoomed");
+  document
+    .getElementById("beritaModal")
+    .classList.remove("active");
 }
-function setupBeritaZoom() {
-  const img = document.getElementById("beritaModalImg");
-  if (!img) return;
 
-  img.onclick = function () {
-    this.classList.toggle("zoomed");
-  };
-}   
+document.addEventListener("DOMContentLoaded", () => {
+
+  const img = document.getElementById("beritaModalImg");
+
+  if(img){
+    img.addEventListener("click", function(){
+      this.classList.toggle("zoomed");
+    });
+  }
+
+}); 
+
+// ================= FAQ =================
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item) => {
+
+  const btn = item.querySelector(".faq-question");
+
+  btn.addEventListener("click", () => {
+
+    item.classList.toggle("active");
+
+  });
+
+});
+// ================= REVEAL SCROLL =================
+
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+
+  reveals.forEach((el) => {
+
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if(elementTop < windowHeight - 100){
+      el.classList.add("active");
+    }
+
+  });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+// ================= DARK MODE =================
+
+const darkBtn = document.getElementById("darkToggle");
+
+if(darkBtn){
+
+  darkBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+      darkBtn.innerHTML = "☀️ Light Mode";
+    } else {
+      darkBtn.innerHTML = "🌙 Dark Mode";
+    }
+
+  });
+
+}
+document.querySelectorAll('.proker-header').forEach(btn => {
+
+  btn.addEventListener('click', () => {
+
+    const content = btn.nextElementSibling;
+
+    document.querySelectorAll('.proker-content').forEach(item => {
+      if(item !== content){
+        item.classList.remove('active');
+      }
+    });
+
+    content.classList.toggle('active');
+  });
+
+});
