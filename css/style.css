@@ -798,7 +798,7 @@ body{
     transform:translateY(10px);
 
     transition:.3s;
-    z-index:999;
+    z-index:10000;;
 }
 
 .dropdown-menu a{
@@ -919,19 +919,7 @@ body{
   .logo p{
     font-size:13px;
   }
-
-  .navbar{
-    width:100%;
-    justify-content:flex-start;
-    gap:8px 12px;
-  }
-
-  .navbar a{
-    margin:0;
-    font-size:14px;
-  }
-
-  .hero{
+ .hero{
     height:70vh;
     padding:20px;
   }
@@ -1618,6 +1606,17 @@ body{
 /* ================= MOBILE FIX ================= */
 
 @media (max-width: 768px){
+  .dropdown {
+  position: static;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: auto;
+  right: auto;
+  z-index: 10000;
+}
 
   .header-top{
     padding:12px 15px;
