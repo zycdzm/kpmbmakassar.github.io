@@ -1,140 +1,82 @@
-const dataAnggota = {
-  "Divisi PSDM": [
-    {
-      nama: "Hartika Julianty Nursuhada",
-      foto: "asset/img/psdm.jpg",
-      unit: "Koordinator",
-      program: "Upgarding, LDK",
-      desc: "Penanggung Jawab Program-Program Kerja Bidang Pengembangan Sumber Daya Manusia."
-    },
-    {
-      nama: "Daniel Putra Natama Lumban Gaol",
-      foto: "asset/img/daniel.jpg",
-      unit: "Manuntung English Improvement",
-      program: "Manuntung Class",
-      desc: "Pelaksana Teknis Program-Program Pengembangan Kemampuan Berbahasa Inggris Bagi Warga KPMB Makassar."
-    },
-    {
-      nama: "Amanda Nur Fadillah",
-      foto: "asset/img/manda.jpg",
-      unit: "Manuntung Studi Club",
-      program: "Manuntung Sport, Manuntung Kajian",
-      desc: "Pelaksana Teknis Pengembangan pada Bidang Ilmiah, Minat dan Bakat Termasuk di Dalamnya Program Pengembangan Wawasan dan Keilmuan Warga KPMB Makassar."
-    }
-  ],
-
-  "Divisi Humas": [
-    {
-      nama: "Akhmad Nurwahid",
-      foto: "asset/img/humas.png",
-      unit: "Koordinator",
-      program: "",
-      desc: "Penanggung Jawab Program-Program Kerja Divisi Hubungan Masyarakat."
-    },
-    {
-      nama: "Samuel Putra Natama Lumban Gaol",
-      foto: "asset/img/samuel.jpg",
-      unit: "Informasi & Komunikasi, Kemahasiswaan",
-      program: "Rebuild Website KPMB",
-      desc: "Pelaksana Teknis Program-Program yang Mencakup Informasi Mengenai Internal dan Eksternal KPMB Makassar, Pendataan Pelajar dan Mahasiswa Asal Kota Balikpapan, serta monitoring keaktifan dan keterlibatan anggota."
-    },
-    {
-      nama: "Afkhar Fahry Wardana",
-      foto: "asset/img/pari.jpg",
-      unit: "Media & Kreatif",
-      program: "Arsip Kegiatan",
-      desc: "Penanggung Jawab dan Pelaksana Teknis Pengelolaan Konten pada Media KPMB Makassar."
-    }
-  ],
-
-  "Divisi Biro": [
-    {
-      nama: "Dewi Hardiani",
-      foto: "asset/img/dewi.jpg",
-      unit: "Kepala Biro",
-      program: "Moas Menabur Hut Asrama",
-      desc: "Penanggung Jawab dan Kepala Operasional Asrama KPMB Makassar."
-    },
-    {
-      nama: "Ermi",
-      foto: "asset/img/ermi.png",
-      unit: "Keuangan",
-      program:  "Moas Menabur Hut Asrama",
-      desc: "Penanggung Jawab Terhadap Pembukuan dan Pengelolaan Keuangan Asrama KPMB Makassar."
-    },
-    {
-      nama: "Andi Miftahul Jannah",
-      foto: "asset/img/mita.jpg",
-      unit: "Inventaris & Logistik",
-      program:  "Moas Menabur Hut Asrama",
-      desc: "Penanggung Jawab Terhadap Pengelolaan Inventaris Organisasi Serta Pengadaan Kelengkapan dan Logistik Organisasi."
-    }
-  ]
-};
-
-// ================== PAGE NAVIGATION ==================
-function showPage(id){
-
-  document.querySelectorAll('.page').forEach(page=>{
-    page.classList.remove('active');
-  });
-
-  const target = document.getElementById(id);
-
-  if(target){
-    target.classList.add('active');
-  }else{
-    document.getElementById('home').classList.add('active');
-    console.error('Halaman tidak ditemukan:', id);
-  }
-}
-// ================== DIVISI ==================
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll("#divisi .struktur-grid .box");
-  const container = document.getElementById("anggotaDivisi");
-
-  cards.forEach((box) => {
-    box.addEventListener("click", function () {
-      const titleEl = this.querySelector("h3");
-      if (!titleEl) return;
-
-      const namaDivisi = titleEl.innerText.trim();
-      const key1 = namaDivisi;
-      const key2 = namaDivisi.replace(/^Divisi\s+/i, "").trim();
-
-      const anggota = dataAnggota[key1] || dataAnggota[key2];
-
-      if (!anggota || anggota.length === 0) {
-        container.innerHTML = `<p style="margin-top:20px;">Belum ada data anggota untuk ${namaDivisi}.</p>`;
-        return;
+  const dataAnggota = {
+    "Divisi PSDM": [
+      {
+        nama: "Hartika Julianty Nursuhada",
+        foto: "asset/img/psdm.jpg",
+        unit: "Koordinator",
+        program: "Upgarding, LDK",
+        desc: "Penanggung Jawab Program-Program Kerja Bidang Pengembangan Sumber Daya Manusia."
+      },
+      {
+         nama: "Amanda Nur Fadillah",
+        foto: "asset/img/manda.jpg",
+        unit: "Manuntung Studi Club",
+        program: "Manuntung Sport, Manuntung Kajian",
+        desc: "Pelaksana Teknis Pengembangan pada Bidang Ilmiah, Minat dan Bakat Termasuk di Dalamnya Program Pengembangan Wawasan dan Keilmuan Warga KPMB Makassar."
+      },
+      {
+        nama:"Daniel Putra Natama Lumban Gaol",
+        foto: "asset/img/daniel.jpg",
+        unit: "Manuntung English Improvement",
+        program: "Manuntung Class",
+        desc: "Pelaksana Teknis Program-Program Pengembangan Kemampuan Berbahasa Inggris Bagi Warga KPMB Makassar."
       }
+    ],
 
-      let html = `<h2>${namaDivisi}</h2>`;
-      html += `<div class="anggota-list">`;
+       
+        
 
-      anggota.forEach((a) => {
-        html += `
-          <div class="anggota-card">
-            <img src="${a.foto}" alt="${a.nama}">
-            <div class="anggota-info">
-              <h3>${a.nama}</h3>
-              <p><b>Unit:</b> ${a.unit}</p>
-              <div class="program">
-                <h4>${a.program}</h4>
-                <p>${a.desc}</p>
-              </div>
-            </div>
-          </div>
-        `;
-      });
+    "Divisi Humas": [
+      {
+        nama: "Akhmad Nurwahid",
+        foto: "asset/img/humas.png",
+        unit: "Koordinator",
+        program: "",
+        desc: "Penanggung Jawab Program-Program Kerja Divisi Hubungan Masyarakat."
+      },
+      {
+        nama: "Samuel Putra Natama Lumban Gaol",
+        foto: "asset/img/samuel.jpg",
+        unit: "Informasi & Komunikasi, Kemahasiswaan",
+        program: "Rebuild Website KPMB",
+        desc: "Pelaksana Teknis Program-Program yang Mencakup Informasi Mengenai Internal dan Eksternal KPMB Makassar, Pendataan Pelajar dan Mahasiswa Asal Kota Balikpapan, serta monitoring keaktifan dan keterlibatan anggota."
+      },
+      {
+        nama: "Afkhar Fahry Wardana",
+        foto: "asset/img/pari.jpg",
+        unit: "Media & Kreatif",
+        program: "Arsip Kegiatan",
+        desc: "Penanggung Jawab dan Pelaksana Teknis Pengelolaan Konten pada Media KPMB Makassar."
+      }
+    ],
 
-      html += `</div>`;
-      container.innerHTML = html;
-    });
-  });
+    "Divisi Biro": [
+      {
+        nama: "Dewi Hardiani",
+        foto: "asset/img/dewi.jpg",
+        unit: "Kepala Biro",
+        program: "Moas, Menabur, Hut Asrama",
+        desc: "Penanggung Jawab dan Kepala Operasional Asrama KPMB Makassar."
+      },
+      {
+        nama: "Ermi",
+        foto: "asset/img/ermi.png",
+        unit: "Keuangan",
+        program:  "Moas Menabur Hut Asrama",
+        desc: "Penanggung Jawab Terhadap Pembukuan dan Pengelolaan Keuangan Asrama KPMB Makassar."
+      },
+      {
+        nama: "Andi Miftahul Jannah",
+        foto: "asset/img/mita.jpg",
+        unit: "Inventaris & Logistik",
+        program:  "Moas Menabur Hut Asrama",
+        desc: "Penanggung Jawab Terhadap Pengelolaan Inventaris Organisasi Serta Pengadaan Kelengkapan dan Logistik Organisasi."
+      }
+    ]
+  };
 
-  // ================== IMAGE PREVIEW ==================
+  // ================== PAGE NAVIGATION ==================
+  document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll(".db-table img").forEach((img) => {
     img.addEventListener("click", function () {
@@ -163,312 +105,482 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
   }
+
 });
+  function showPage(id){
 
-// ================== FLIPBOOK ==================
+    document.querySelectorAll('.page').forEach(page=>{
+        page.classList.remove('active');
+        page.style.display = 'none';
+    });
 
-let pageFlip = null;
+    document.querySelectorAll('.gallery-page').forEach(page=>{
+        page.style.display = 'none';
+    });
 
-function initBook() {
-  const bookEl = document.getElementById("book");
-  if (!bookEl) return;
+    const target = document.getElementById(id);
 
-  if (pageFlip) {
-    pageFlip.destroy();
-    pageFlip = null;
+    if(target){
+        target.classList.add('active');
+        target.style.display = 'block';
+    }
+}
+  // ================== FLIPBOOK ==================
+
+  let pageFlip = null;
+
+  function initBook() {
+    const bookEl = document.getElementById("book");
+    if (!bookEl) return;
+
+    if (pageFlip) {
+      pageFlip.destroy();
+      pageFlip = null;
+    }
+
+    pageFlip = new St.PageFlip(bookEl, {
+      width: 450,
+      height: 600,
+      size: "fixed",
+      showCover: true,
+      usePortrait: true,
+      autoSize: true,
+      maxShadowOpacity: 0.4,
+      mobileScrollSupport: true
+    });
+
+    const pages = [];
+    for (let i = 1; i <= 127; i++) {
+      pages.push(`asset/book/page${i}.jpg`);
+    }
+
+    pageFlip.loadFromImages(pages);
   }
 
-  pageFlip = new St.PageFlip(bookEl, {
-    width: 450,
-    height: 600,
-    size: "fixed",
-    showCover: true,
-    usePortrait: true,
-    autoSize: true,
-    maxShadowOpacity: 0.4,
-    mobileScrollSupport: true
+  function bukaSejarah() {
+    document.getElementById("bookModal").classList.add("active");
+    setTimeout(initBook, 100);
+  }
+
+  function closeSejarah() {
+    document.getElementById("bookModal").classList.remove("active");
+    if (pageFlip) {
+      pageFlip.destroy();
+      pageFlip = null;
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!pageFlip) return;
+
+    if (e.target.classList.contains("next")) {
+      pageFlip.flipNext("bottom");
+    }
+
+    if (e.target.classList.contains("prev")) {
+      pageFlip.flipPrev("bottom");
+    }
   });
 
-  const pages = [];
-  for (let i = 1; i <= 127; i++) {
-    pages.push(`asset/book/page${i}.jpg`);
+  // ================== DATABASE ==================
+
+  function bukaDatabase() {
+    document.getElementById("bookModal").classList.remove("active");
+    document.getElementById("visiModal").classList.remove("active");
+    document.getElementById("nilaiModal").classList.remove("active");
+
+    const modal = document.getElementById("databaseModal");
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    document.querySelectorAll(".data-box").forEach((box) => {
+      box.classList.remove("active");
+    });
+
+    const alumni = document.getElementById("alumni");
+    if (alumni) alumni.classList.add("active");
   }
 
-  pageFlip.loadFromImages(pages);
-}
-
-function bukaSejarah() {
-  document.getElementById("bookModal").classList.add("active");
-  setTimeout(initBook, 100);
-}
-
-function closeSejarah() {
-  document.getElementById("bookModal").classList.remove("active");
-  if (pageFlip) {
-    pageFlip.destroy();
-    pageFlip = null;
-  }
-}
-
-document.addEventListener("click", function (e) {
-  if (!pageFlip) return;
-
-  if (e.target.classList.contains("next")) {
-    pageFlip.flipNext("bottom");
+  function closeDatabase() {
+    const modal = document.getElementById("databaseModal");
+    if (modal) modal.classList.remove("active");
   }
 
-  if (e.target.classList.contains("prev")) {
-    pageFlip.flipPrev("bottom");
-  }
-});
+  function showData(id) {
+    document.querySelectorAll(".data-box").forEach((box) => {
+      box.classList.remove("active");
+    });
 
-// ================== DATABASE ==================
-
-function bukaDatabase() {
-  document.getElementById("bookModal").classList.remove("active");
-  document.getElementById("visiModal").classList.remove("active");
-  document.getElementById("nilaiModal").classList.remove("active");
-
-  const modal = document.getElementById("databaseModal");
-  if (!modal) return;
-
-  modal.classList.add("active");
-
-  document.querySelectorAll(".data-box").forEach((box) => {
-    box.classList.remove("active");
-  });
-
-  const alumni = document.getElementById("alumni");
-  if (alumni) alumni.classList.add("active");
-}
-
-function closeDatabase() {
-  const modal = document.getElementById("databaseModal");
-  if (modal) modal.classList.remove("active");
-}
-
-function showData(id) {
-  document.querySelectorAll(".data-box").forEach((box) => {
-    box.classList.remove("active");
-  });
-
-  const target = document.getElementById(id);
-  if (target) target.classList.add("active");
-}
-
-// ================== VISI MISI ==================
-
-function bukaVisiMisi() {
-  document.getElementById("bookModal").classList.remove("active");
-  document.getElementById("databaseModal").classList.remove("active");
-  document.getElementById("nilaiModal").classList.remove("active");
-
-  const modal = document.getElementById("visiModal");
-  if (modal) modal.classList.add("active");
-}
-
-function closeVisi() {
-  const modal = document.getElementById("visiModal");
-  if (modal) modal.classList.remove("active");
-}
-
-// ================== NILAI ==================
-
-function bukaNilai() {
-  document.getElementById("bookModal").classList.remove("active");
-  document.getElementById("databaseModal").classList.remove("active");
-  document.getElementById("visiModal").classList.remove("active");
-
-  const modal = document.getElementById("nilaiModal");
-  if (modal) modal.classList.add("active");
-}
-
-function closeNilai() {
-  const modal = document.getElementById("nilaiModal");
-  if (modal) modal.classList.remove("active");
-}
-
-// ================== HERO SLIDER ==================
-
-// ================== HERO SLIDER ==================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const hero = document.querySelector(".hero");
-
-  const heroImages = [
-    "asset/img/selamat.jpg",
-    "asset/img/k1.jpg",
-    "asset/img/k2.jpg",
-    "asset/img/k3.jpg",
-    "asset/img/k4.jpg",
-    "asset/img/k5.jpeg"
-  ];
-
-  let heroIndex = 0;
-
-  function updateHero() {
-    if (!hero) return;
-
-    hero.style.backgroundImage =
-      `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('${heroImages[heroIndex]}')`;
+    const target = document.getElementById(id);
+    if (target) target.classList.add("active");
   }
 
-  const heroNext = document.querySelector(".hero-next");
-  const heroPrev = document.querySelector(".hero-prev");
+  // ================== VISI MISI ==================
 
-  if (heroNext) {
-    heroNext.addEventListener("click", () => {
+  function bukaVisiMisi() {
+    document.getElementById("bookModal").classList.remove("active");
+    document.getElementById("databaseModal").classList.remove("active");
+    document.getElementById("nilaiModal").classList.remove("active");
+
+    const modal = document.getElementById("visiModal");
+    if (modal) modal.classList.add("active");
+  }
+
+  function closeVisi() {
+    const modal = document.getElementById("visiModal");
+    if (modal) modal.classList.remove("active");
+  }
+
+  // ================== NILAI ==================
+
+  function bukaNilai() {
+    document.getElementById("bookModal").classList.remove("active");
+    document.getElementById("databaseModal").classList.remove("active");
+    document.getElementById("visiModal").classList.remove("active");
+
+    const modal = document.getElementById("nilaiModal");
+    if (modal) modal.classList.add("active");
+  }
+
+  function closeNilai() {
+    const modal = document.getElementById("nilaiModal");
+    if (modal) modal.classList.remove("active");
+  }
+
+  // ================== HERO SLIDER ==================
+
+  // ================== HERO SLIDER ==================
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const hero = document.querySelector(".hero");
+
+    const heroImages = [
+      "asset/img/selamat.jpg",
+      "asset/img/k1.jpg",
+      "asset/img/k2.jpg",
+      "asset/img/k3.jpg",
+      "asset/img/k4.jpg",
+      "asset/img/k5.jpeg"
+    ];
+
+    let heroIndex = 0;
+
+    function updateHero() {
+      if (!hero) return;
+
+      hero.style.backgroundImage =
+        `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('${heroImages[heroIndex]}')`;
+    }
+
+    const heroNext = document.querySelector(".hero-next");
+    const heroPrev = document.querySelector(".hero-prev");
+
+    if (heroNext) {
+      heroNext.addEventListener("click", () => {
+        heroIndex++;
+        if (heroIndex >= heroImages.length) heroIndex = 0;
+        updateHero();
+      });
+    }
+
+    if (heroPrev) {
+      heroPrev.addEventListener("click", () => {
+        heroIndex--;
+        if (heroIndex < 0) heroIndex = heroImages.length - 1;
+        updateHero();
+      });
+    }
+
+    updateHero();
+
+    setInterval(() => {
       heroIndex++;
       if (heroIndex >= heroImages.length) heroIndex = 0;
       updateHero();
-    });
-  }
-
-  if (heroPrev) {
-    heroPrev.addEventListener("click", () => {
-      heroIndex--;
-      if (heroIndex < 0) heroIndex = heroImages.length - 1;
-      updateHero();
-    });
-  }
-
-  updateHero();
-
-  setInterval(() => {
-    heroIndex++;
-    if (heroIndex >= heroImages.length) heroIndex = 0;
-    updateHero();
-  }, 5000);
-
-});
-
-
-// ================== BERITA ==================
-
-const beritaData = [
-  {
-    img: "asset/img/forta.jpeg",
-    judul: "Forta KPMB",
-    isi: "Dokumentasi kegiatan Forta KPMB Makassar."
-  },
-  {
-    img: "asset/img/forta1.jpeg",
-    judul: "Kegiatan Anggota",
-    isi: "Kegiatan kebersamaan anggota KPMB Makassar."
-  },
-  {
-    img: "asset/img/forta3.jpeg",
-    judul: "Balikpapan City Series",
-    isi: "Dokumentasi kegiatan city series."
-  }
-];
-
-function bukaBerita(index){
-
-  const data = beritaData[index];
-
-  document.getElementById("beritaModalImg").src = data.img;
-  document.getElementById("beritaModalJudul").textContent = data.judul;
-  document.getElementById("beritaModalIsi").textContent = data.isi;
-
-  document
-    .getElementById("beritaModal")
-    .classList.add("active");
-
-  document
-    .getElementById("beritaModalImg")
-    .classList.remove("zoomed");
-}
-
-function closeBerita(){
-  document
-    .getElementById("beritaModal")
-    .classList.remove("active");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const img = document.getElementById("beritaModalImg");
-
-  if(img){
-    img.addEventListener("click", function(){
-      this.classList.toggle("zoomed");
-    });
-  }
-
-}); 
-
-// ================= FAQ =================
-
-const faqItems = document.querySelectorAll(".faq-item");
-
-faqItems.forEach((item) => {
-
-  const btn = item.querySelector(".faq-question");
-
-  btn.addEventListener("click", () => {
-
-    item.classList.toggle("active");
+    }, 5000);
 
   });
 
-});
-// ================= REVEAL SCROLL =================
 
-const reveals = document.querySelectorAll(".reveal");
+  // ================== BERITA ==================
 
-function revealOnScroll(){
+  const beritaData = [
+    {
+      img: "asset/img/forta.jpeg",
+      judul: "Forta KPMB",
+      isi: "Dokumentasi kegiatan Forta KPMB Makassar."
+    },
+    {
+      img: "asset/img/forta1.jpeg",
+      judul: "Kegiatan Anggota",
+      isi: "Kegiatan kebersamaan anggota KPMB Makassar."
+    },
+    {
+      img: "asset/img/forta3.jpeg",
+      judul: "Balikpapan City Series",
+      isi: "Dokumentasi kegiatan city series."
+    }
+  ];
 
-  reveals.forEach((el) => {
+  function bukaBerita(index){
 
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
+    const data = beritaData[index];
 
-    if(elementTop < windowHeight - 100){
-      el.classList.add("active");
+    document.getElementById("beritaModalImg").src = data.img;
+    document.getElementById("beritaModalJudul").textContent = data.judul;
+    document.getElementById("beritaModalIsi").textContent = data.isi;
+
+    document
+      .getElementById("beritaModal")
+      .classList.add("active");
+
+    document
+      .getElementById("beritaModalImg")
+      .classList.remove("zoomed");
+  }
+
+  function closeBerita(){
+    document
+      .getElementById("beritaModal")
+      .classList.remove("active");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const img = document.getElementById("beritaModalImg");
+
+    if(img){
+      img.addEventListener("click", function(){
+        this.classList.toggle("zoomed");
+      });
     }
 
-  });
+  }); 
 
-}
+  // ================= FAQ =================
 
-window.addEventListener("scroll", revealOnScroll);
+  const faqItems = document.querySelectorAll(".faq-item");
 
-revealOnScroll();
+  faqItems.forEach((item) => {
 
-// ================= DARK MODE =================
+    const btn = item.querySelector(".faq-question");
 
-const darkBtn = document.getElementById("darkToggle");
+    btn.addEventListener("click", () => {
 
-if(darkBtn){
+      item.classList.toggle("active");
 
-  darkBtn.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark");
-
-    if(document.body.classList.contains("dark")){
-      darkBtn.innerHTML = "☀️ Light Mode";
-    } else {
-      darkBtn.innerHTML = "🌙 Dark Mode";
-    }
+    });
 
   });
+  // ================= REVEAL SCROLL =================
 
-}
-document.querySelectorAll('.proker-header').forEach(btn => {
+  const reveals = document.querySelectorAll(".reveal");
 
-  btn.addEventListener('click', () => {
+  function revealOnScroll(){
 
-    const content = btn.nextElementSibling;
+    reveals.forEach((el) => {
 
-    document.querySelectorAll('.proker-content').forEach(item => {
-      if(item !== content){
-        item.classList.remove('active');
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+
+      if(elementTop < windowHeight - 100){
+        el.classList.add("active");
       }
+
     });
 
-    content.classList.toggle('active');
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+
+  revealOnScroll();
+
+  // ================= DARK MODE =================
+
+  const darkBtn = document.getElementById("darkToggle");
+
+  if(darkBtn){
+
+    darkBtn.addEventListener("click", () => {
+
+      document.body.classList.toggle("dark");
+
+      if(document.body.classList.contains("dark")){
+        darkBtn.innerHTML = "☀️ Light Mode";
+      } else {
+        darkBtn.innerHTML = "🌙 Dark Mode";
+      }
+
+    });
+
+  }
+  document.querySelectorAll('.proker-header').forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+      const content = btn.nextElementSibling;
+
+      document.querySelectorAll('.proker-content').forEach(item => {
+        if(item !== content){
+          item.classList.remove('active');
+        }
+      });
+
+      content.classList.toggle('active');
+    });
+
   });
 
+   const images = document.querySelectorAll('.gallery-img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close-btn');
+const zoomIn = document.getElementById('zoomIn');
+const zoomOut = document.getElementById('zoomOut');
+
+let scale = 1;
+
+images.forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+        scale = 1;
+        lightboxImg.style.transform = `scale(${scale})`;
+    });
 });
+
+closeBtn.onclick = () => {
+    lightbox.classList.remove('active');
+};
+
+zoomIn.onclick = () => {
+    scale += 0.2;
+    lightboxImg.style.transform = `scale(${scale})`;
+};
+
+zoomOut.onclick = () => {
+    if(scale > 0.4){
+        scale -= 0.2;
+        lightboxImg.style.transform = `scale(${scale})`;
+    }
+};
+
+lightbox.onclick = (e) => {
+    if(e.target === lightbox){
+        lightbox.classList.remove('active');
+    }
+};
+function showGallery(type){
+
+    document.getElementById('kegiatan').style.display='none';
+
+    document.querySelectorAll('.gallery-page').forEach(page=>{
+        page.style.display='none';
+    });
+
+    document.getElementById(type + '-gallery').style.display='block';
+}
+
+function backToKegiatan(){
+
+    document.querySelectorAll('.gallery-page').forEach(page=>{
+        page.style.display='none';
+    });
+
+    document.getElementById('kegiatan').style.display='block';
+}
+document.querySelectorAll(".box").forEach(box => {
+
+    box.addEventListener("click", () => {
+
+        const namaDivisi = box.dataset.divisi;
+
+        tampilkanDivisi(namaDivisi);
+
+    });
+
+});
+function tampilkanDivisi(divisi){
+
+    const data = dataAnggota[divisi];
+
+    const koor = data[0];
+
+    let anggotaHTML = "";
+
+    data.slice(1).forEach(item => {
+
+        anggotaHTML += `
+            <div class="tim-card">
+
+                <img src="${item.foto}" alt="${item.nama}">
+
+                <h4>${item.nama}</h4>
+
+                <p>${item.unit}</p>
+
+            </div>
+        `;
+
+    });
+
+    document.getElementById("anggotaDivisi").innerHTML = `
+
+        <div class="detail-divisi">
+
+            <div class="divisi-header">
+
+                <div class="divisi-text">
+
+                    <small>Koordinator Divisi</small>
+
+                    <h2>${divisi}</h2>
+
+                    <p class="ketua-deskripsi">${koor.desc}</p>
+
+                    <br>
+
+                    <p>
+                        <strong>Program Kerja :</strong>
+                        ${koor.program || "-"}
+                    </p>
+
+                </div>
+
+                <div class="koordinator">
+
+                    <img src="${koor.foto}" alt="${koor.nama}">
+
+                    <div class="nama-koor">
+                        ${koor.nama}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sub-divisi-title">
+
+                <small>Anggota Divisi</small>
+
+                <h3>Struktur Divisi</h3>
+
+            </div>
+
+            <div class="tim-grid">
+
+                ${anggotaHTML}
+
+            </div>
+
+        </div>
+
+    `;
+
+    document.getElementById("anggotaDivisi")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}

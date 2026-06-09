@@ -334,6 +334,7 @@ body{
   transform:scale(1.04);
 }
 
+
 /* ================= FOOTER ================= */
 
 .site-footer{
@@ -637,84 +638,265 @@ body{
 }
 /* ================= DIVISI ================= */
 
-#divisi{
-  padding-top:40px;
+/* ================= DETAIL DIVISI ================= */
+
+.detail-divisi{
+    background:#fdfaf5;
+    border-radius:20px;
+    padding:36px 32px;
+    border:1px solid #e8ddd0;
+    box-shadow:0 4px 24px rgba(90,62,40,.08);
+    animation:fadeSlideIn .4s ease;
 }
 
-#divisi h2{
-  margin-bottom:20px;
+.divisi-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    padding-bottom:30px;
+    margin-bottom:30px;
+    border-bottom:1px solid #e8ddd0;
 }
 
-#divisi .struktur-grid{
-  margin-bottom:25px;
+.divisi-text{
+    flex:1;
 }
 
-#anggotaDivisi{
-  width:100%;
-  margin-top:28px;
-  display:block;
-  clear:both;
+.divisi-text small{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    color:#9a7456;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-bottom:8px;
 }
 
-#anggotaDivisi h2{
-  margin:0 0 18px 0;
-  text-align:left;
+.divisi-text h2{
+    font-size:34px;
+    color:#4a2e14;
+    margin-bottom:15px;
+    font-family:Georgia, serif;
 }
 
-.anggota-list{
-  width:100%;
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-  gap:20px;
+.divisi-text p{
+    color:#6a5240;
+    line-height:1.8;
+    font-size:14px;
 }
 
-.anggota-card{
-  background:#fff;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  display:flex;
-  gap:16px;
-  padding:16px;
-  transition:0.3s;
-  align-items:flex-start;
+/* ================= KOORDINATOR ================= */
+
+.koordinator{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex-shrink:0;
 }
 
-.anggota-card:hover{
-  transform:translateY(-4px);
+.koordinator img{
+    width: 500px;
+    height:280px;
+    object-fit:cover;
+    object-position:top center;
+    border-radius:18px;
+    border:3px solid #c9a87c;
+    background:#d4c4b0;
+}
+.nama-koor{
+    margin-top:15px;
+    padding:10px 22px;
+    border:1.5px solid #c9a87c;
+    border-radius:50px;
+    color:#5a3e28;
+    font-size:15px;
+    font-weight:600;
+    text-align:center;
 }
 
-.anggota-card img{
-  width:120px;
-  height:120px;
-  object-fit:cover;
-  border-radius:12px;
-  flex-shrink:0;
+/* ================= JUDUL ANGGOTA ================= */
+
+.sub-divisi-title small{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    color:#9a7456;
+    text-transform:uppercase;
+    letter-spacing:.1em;
 }
 
-.anggota-info{
-  flex:1;
+.sub-divisi-title h3{
+    margin-top:5px;
+    margin-bottom:20px;
+    font-size:24px;
+    color:#4a2e14;
+    font-family:Georgia, serif;
 }
 
-.anggota-info h3{
-  margin-bottom:6px;
-  font-size:18px;
+/* ================= GRID ANGGOTA ================= */
+
+.tim-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+/* ================= CARD ANGGOTA ================= */
+
+.tim-card{
+    background:#fff;
+    border:1px solid #e2d5c4;
+    border-radius:14px;
+    overflow:hidden;
+    text-align:center;
+    padding:22px;
+    transition:.3s;
+    min-height: 420px;
 }
 
-.anggota-info p{
-  margin:0;
-  color:#555;
-  line-height:1.5;
+.tim-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 28px rgba(90,62,40,.12);
 }
 
-.program{
-  margin-top:10px;
+.tim-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    object-position:top center;
+    border-radius:10px;
+    margin-bottom:12px;
 }
 
-.program h4{
-  font-size:15px;
-  margin-bottom:4px;
+.tim-card h4{
+    font-size:18px;
+    margin-bottom:8px;
+    color:#3a2410;
 }
+
+.tim-card p{
+    color:#8b6340;
+    font-size:13px;
+}
+.dropdown{
+    position:relative;
+    display:inline-block;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    min-width:220px;
+
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+
+    transition:.3s;
+    z-index:999;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 18px;
+    color:#333;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.dropdown-menu a:hover{
+    background:#f4f4f4;
+}
+
+.dropdown:hover .dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .divisi-header{
+        flex-direction:column-reverse;
+        align-items:center;
+        text-align:center;
+    }
+
+    .divisi-text h2{
+        font-size:28px;
+    }
+
+    .koordinator img{
+        width:130px;
+        height:160px;
+    }
+
+    .tim-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+/* ---- TAG PROGRAM KERJA ---- */
+.program {
+  margin-top: 8px;
+}
+
+.program h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9a7456;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 6px 0;
+}
+
+.program-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.program-tag {
+  display: inline-block;
+  background: #f0e6d8;
+  color: #7a4e28;
+  border-radius: 50px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ---- RESPONSIF MOBILE ---- */
+@media (max-width: 640px) {
+  .ketua-row {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .ketua-deskripsi {
+    max-width: 100%;
+  }
+
+  .ketua-info {
+    text-align: center;
+  }
+
+  .divisi-detail-block {
+    padding: 24px 18px 24px;
+  }
+
+  .anggota-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* ================= RESPONSIVE ================= */
 
@@ -1510,4 +1692,218 @@ body{
   .container{
     width:95%;
   }
+} /* ================= KEGIATAN ================= */
+
+.kegiatan-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+    margin-top:30px;
+}
+
+.kegiatan-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.kegiatan-card:hover{
+    transform:translateY(-8px);
+}
+
+.kegiatan-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.kegiatan-card h3{
+    padding:15px 20px 5px;
+    color:#1d3557;
+    font-size:1.2rem;
+}
+
+.kegiatan-card p{
+    padding:0 20px 20px;
+    color:#555;
+    line-height:1.6;
+}
+
+#kegiatan{
+    padding:80px 5%;
+}
+
+#kegiatan h2{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:2rem;
+    color:#1d3557;
+}
+/* ================= GALLERY PAGE ================= */
+
+.gallery-page{
+    padding:60px 5%;
+    background:#d8cec5;
+    min-height:100vh;
+}
+
+/* Header Kembali + Judul */
+.gallery-header{
+    margin-bottom:30px;
+}
+
+.gallery-header h2{
+    text-align:center;
+    font-size:  60px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#4a2e14;
+}
+
+.kegiatan-subtitle{
+    text-align:center;
+    font-size:30px;
+    color:#7a6050;
+    margin:0;
+    font-weight: bold;
+}
+
+/* Tombol kembali */
+.back-btn{
+    background:#1d3557;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:22px;
+    transition:.3s;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+.back-btn:hover{
+    background:#274c77;
+    transform:translateY(-2px);
+}
+
+/* Grid Foto */
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:35px;
+    margin-top:25px;
+}
+
+/* Card Foto */
+.gallery-grid img{
+    width:100%;
+    height:350px;
+    object-fit:contain;
+    border-radius:18px;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.gallery-grid img:hover{
+    transform:translateY(-6px) scale(1.02);
+}
+
+/* Responsive HP */
+@media(max-width:1000px){
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery-header h2{
+        font-size:46px;
+    }
+}
+
+@media(max-width:650px){
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .gallery-header h2{
+        font-size:38px;
+    }
+}
+.lightbox{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.95);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox-content img{
+    max-width:90vw;
+    max-height:85vh;
+    object-fit:contain;
+    transition:transform .3s;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+.zoom-controls{
+    position:absolute;
+    bottom:30px;
+    display:flex;
+    gap:10px;
+}
+
+.zoom-controls button{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    font-size:22px;
+    cursor:pointer;
+}
+#rakpel-gallery .back-btn{
+    display:inline-block;
+    float:left;
+    margin-bottom:30px;
+}
+
+#rakpel-gallery h2,
+#rakpel-gallery .kegiatan-desc{
+    clear:both;
+    text-align:center;
+
+}#muswam-gallery .back-btn{
+    display:inline-block;
+    float:left;
+    margin-bottom:30px;
+}
+
+#muswam-gallery h2,
+#muswam-gallery .kegiatan-desc{
+    clear:both;
+    text-align:center;
 }
