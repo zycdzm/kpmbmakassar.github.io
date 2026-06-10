@@ -1885,8 +1885,7 @@ body{
     cursor:pointer;
 }
 #rakpel-gallery .back-btn{
-    display:inline-block;
-    float:left;
+    display:inline-block; 
     margin-bottom:30px;
 }
 
@@ -1897,7 +1896,7 @@ body{
 
 }#muswam-gallery .back-btn{
     display:inline-block;
-    float:left;
+
     margin-bottom:30px;
 }
 
@@ -1985,4 +1984,18 @@ body{
         max-height:350px;
         object-fit:cover;
     }
+}
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+img{
+    max-width:100%;
 }
