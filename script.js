@@ -230,15 +230,17 @@ function initBook() {
         pageFlip = null;
     }
 
-    const isMobile = window.innerWidth <= 768;
+ const isMobile = window.innerWidth <= 768;
+const w = isMobile ? Math.floor(window.innerWidth * 0.75) : 450;
+const h = isMobile ? Math.floor(w * 1.4) : 600;
 
-    pageFlip = new St.PageFlip(bookEl, {
-    width: 450,
-    height: 600,
+pageFlip = new St.PageFlip(bookEl, {
+    width: w,
+    height: h,
     size: "fixed",
     showCover: true,
     usePortrait: true,
-    autoSize: true,
+    autoSize: false,
     maxShadowOpacity: 0.4,
     mobileScrollSupport: true
 });
