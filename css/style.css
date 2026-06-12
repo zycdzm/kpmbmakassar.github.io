@@ -619,21 +619,26 @@ body{
 @media(max-width:768px){
 
   .book-wrapper{
-    width:95vw;
+    width:100%;
+    max-width:320px;
   }
 
   #book{
-    height:70vh;
+    width:100%;
+    height:65vh;
   }
 
   .book-wrapper .nav{
-    font-size:24px;
-    padding:5px 10px;
+    font-size:20px;
+    padding:4px 8px;
   }
 
-  .page-number{
-    bottom:-50px;
-    font-size:13px;
+  .book-wrapper .prev{
+    left:-10px;
+  }
+
+  .book-wrapper .next{
+    right:-10px;
   }
 }
 /* ================= DIVISI ================= */
@@ -2426,5 +2431,47 @@ img{
 @media (prefers-color-scheme: dark) {
   .back-to-top-btn {
     box-shadow: 0 4px 12px rgba(118, 148, 163, 0.5);
+  }
+}
+/* ===== STATS MOBILE ===== */
+@media (max-width: 768px){
+
+  .stats-section{
+    grid-template-columns: repeat(2, 1fr);
+    gap:12px;
+    padding:25px 15px;
+  }
+
+  .stat-box{
+    padding:18px 10px;
+    border-radius:12px;
+  }
+
+  .stat-box h2{
+    font-size:26px;
+  }
+
+  .stat-box p{
+    font-size:13px;
+    margin-top:4px;
+  }
+}
+
+@media (max-width: 480px){
+
+  .stats-section{
+    gap:10px;
+  }
+
+  .stat-box{
+    padding:15px 8px;
+  }
+
+  .stat-box h2{
+    font-size:22px;
+  }
+
+  .stat-box p{
+    font-size:12px;
   }
 }

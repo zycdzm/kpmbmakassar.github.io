@@ -230,15 +230,21 @@ function initBook() {
         pageFlip = null;
     }
 
+    const isMobile = window.innerWidth <= 768;
+
     pageFlip = new St.PageFlip(bookEl, {
-        width: 450,
-        height: 600,
-        size: "fixed",
+        width: isMobile ? 280 : 450,
+        height: isMobile ? 400 : 600,
+        size: "stretch",
+        minWidth: 250,
+        maxWidth: 450,
+        minHeight: 350,
+        maxHeight: 600,
         showCover: true,
         usePortrait: true,
         autoSize: true,
-        maxShadowOpacity: 0.4,
-        mobileScrollSupport: true
+        mobileScrollSupport: true,
+        maxShadowOpacity: 0.4
     });
 
     const pages = [];
@@ -248,29 +254,6 @@ function initBook() {
 
     pageFlip.loadFromImages(pages);
 }
-
-function bukaSejarah() {
-    document.getElementById("bookModal").classList.add("active");
-    setTimeout(initBook, 100);
-}
-
-function closeSejarah() {
-    document.getElementById("bookModal").classList.remove("active");
-    if (pageFlip) {
-        pageFlip.destroy();
-        pageFlip = null;
-    }
-}
-
-document.addEventListener("click", function (e) {
-    if (!pageFlip) return;
-    if (e.target.classList.contains("next")) {
-        pageFlip.flipNext("bottom");
-    }
-    if (e.target.classList.contains("prev")) {
-        pageFlip.flipPrev("bottom");
-    }
-});
 
 // ================== DATABASE ==================
 
