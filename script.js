@@ -158,7 +158,7 @@ const dataAnggota = {
 // ================== DIVISI DISPLAY ==================
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".box").forEach(box => {
+    document.querySelectorAll("#struktur .box").forEach(box => {
         box.addEventListener("click", () => {
             const namaDivisi = box.dataset.divisi || box.querySelector('h3').textContent;
             tampilkanDivisi(namaDivisi);
@@ -230,24 +230,59 @@ function initBook() {
         pageFlip = null;
     }
 
- const isMobile = window.innerWidth <= 768;
-const w = isMobile ? Math.floor(window.innerWidth * 0.75) : 450;
-const h = isMobile ? Math.floor(w * 1.4) : 600;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isMobile = vw <= 600;
 
-pageFlip = new St.PageFlip(bookEl, {
-    width: w,
-    height: h,
-    size: "fixed",
+    let pageW, pageH;
+
+    if (isMobile) {
+        pageW = Math.floor(vw * 0.92);
+        pageH = Math.floor(pageW * 1.414);
+        if (pageH > vh * 0.88) {
+           pageH = Math.floor(vh * 0.75);
+           pageW = Math.floor(pageH / 1.414);
+        }
+    } else {
+        pageH = Math.floor(vh * 0.88);
+        pageW = Math.floor(pageH / 1.414);
+        if (pageW * 2 > vw) {
+            pageW = Math.floor(vw / 2);
+            pageH = Math.floor(pageW * 1.414);
+        }
+    }
+
+    bookEl.style.width  = (isMobile ? pageW : pageW * 2) + "px";
+    bookEl.style.height = pageH + "px";
+
+    console.log({
+    vw,
+    vh,
+    pageW,
+    pageH
+});
+
+   pageFlip = new St.PageFlip(bookEl, {
+    width: 450,
+    height: 636,
+    size: "stretch",
+    minWidth: 315,
+    maxWidth: 450,
+    minHeight: 446,
+    maxHeight: 636,
     showCover: true,
     usePortrait: true,
-    autoSize: false,
-    maxShadowOpacity: 0.4,
-    mobileScrollSupport: true
+    autoSize: true
 });
+    pageFlip.on("flip", (e) => {
+        const cur = document.getElementById("currentPage");
+        if (cur) cur.textContent = e.data + 1;
+    });
+
     const pages = [];
-    for (let i = 1; i <= 127; i++) {
-        pages.push(`asset/book/page${i}.jpg`);
-    }
+    for (let i = 0; i <= 126; i++) {
+         pages.push(`asset/book/${i}.jpg`);
+}
 
     pageFlip.loadFromImages(pages);
 }
@@ -259,9 +294,10 @@ function bukaSejarah() {
     const modal = document.getElementById("bookModal");
     if (modal) {
         modal.classList.add("active");
+        // Delay 300ms agar modal dan CSS flex layout selesai render
         setTimeout(() => {
-            initBook(); // ← ini yang penting!
-        }, 100);
+            initBook();
+        }, 300);
     }
 }
 

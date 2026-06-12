@@ -771,21 +771,18 @@
 
 <!-- ================= MODAL BUKU DIGITAL ================= -->
 
-<div id="bookModal" class="modal">
+<div id="bookModal">
 
-  <span class="close-popup" onclick="closeSejarah()">✕</span>
+  <button class="book-close-btn" onclick="closeSejarah()">✕</button>
 
   <div class="book-wrapper">
 
-    <!-- tombol sebelumnya -->
+    <button class="nav prev" onclick="pageFlip && pageFlip.flipPrev()">‹</button>
 
-
-    <!-- container flipbook -->
     <div id="book"></div>
 
-    <!-- tombol selanjutnya -->
+    <button class="nav next" onclick="pageFlip && pageFlip.flipNext()">›</button>
 
-    <!-- nomor halaman -->
     <div class="page-number">
       Halaman <span id="currentPage">1</span> /
       <span id="totalPage">127</span>
