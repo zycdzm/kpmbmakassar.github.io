@@ -249,6 +249,24 @@ function initBook() {
 
     pageFlip.loadFromImages(pages);
 }
+function bukaSejarah() {
+    document.getElementById("databaseModal").classList.remove("active");
+    document.getElementById("visiModal").classList.remove("active");
+    document.getElementById("nilaiModal").classList.remove("active");
+
+    const modal = document.getElementById("bookModal");
+    if (modal) {
+        modal.classList.add("active");
+        setTimeout(() => {
+            initBook(); // ← ini yang penting!
+        }, 100);
+    }
+}
+
+function closeSejarah() {
+    const modal = document.getElementById("bookModal");
+    if (modal) modal.classList.remove("active");
+}  
 
 // ================== DATABASE ==================
 
@@ -779,3 +797,17 @@ window.addEventListener('beforeunload', function() {
 });
 
 console.log('✅ Back to Top Button Loaded');
+function bukaSejarah() {
+    document.getElementById("bookModal").classList.remove("active");
+    document.getElementById("databaseModal").classList.remove("active");
+    document.getElementById("visiModal").classList.remove("active");
+    document.getElementById("nilaiModal").classList.remove("active");
+
+    const modal = document.getElementById("sejarahModal");
+    if (modal) modal.classList.add("active");
+}
+
+function closeSejarah() {
+    const modal = document.getElementById("sejarahModal");
+    if (modal) modal.classList.remove("active");
+}   
