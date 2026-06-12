@@ -572,3 +572,232 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 });
+// ================= SIMPLE DATABASE SEARCH ================= 
+
+/**
+ * Filter database berdasarkan search input
+ */
+function filterDatabase() {
+  const searchInput = document.getElementById('searchInput');
+  const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+  
+  // Get active tab (alumni atau warga)
+  const activeTab = document.querySelector('.data-box.active');
+  if (!activeTab) return;
+
+  // Get semua rows dari table
+  const table = activeTab.querySelector('table');
+  if (!table) return;
+  
+  const rows = table.querySelectorAll('tbody tr, tr:not(:first-child)');
+  
+  let visibleCount = 0;
+  let totalCount = 0;
+
+  // Loop setiap row
+  rows.forEach(row => {
+    // Skip header
+    if (row.querySelector('th')) return;
+
+    totalCount++;
+
+    // Get cell values (nama, kampus, angkatan)
+    const cells = row.querySelectorAll('td');
+    if (cells.length < 3) return;
+
+    const nama = cells[0].textContent.toLowerCase();
+    const kampus = cells[1].textContent.toLowerCase();
+    const angkatan = cells[2].textContent.toLowerCase();
+
+    // Check if row matches search
+    const matches = 
+      searchTerm === '' ||
+      nama.includes(searchTerm) ||
+      kampus.includes(searchTerm) ||
+      angkatan.includes(searchTerm);
+
+    // Show or hide row
+    if (matches) {
+      row.style.display = 'table-row';
+      row.classList.remove('table-row-hidden');
+      visibleCount++;
+    } else {
+      row.classList.add('table-row-hidden');
+      row.style.display = 'none';
+    }
+  });
+
+  // Update result info
+  updateSearchInfo(visibleCount, totalCount);
+
+  // Show/hide no results message
+  checkNoResults(table, visibleCount);
+}
+
+/**
+ * Update search result info
+ */
+function updateSearchInfo(visibleCount, totalCount) {
+  const resultInfo = document.getElementById('resultInfo');
+  if (!resultInfo) return;
+
+  const searchInput = document.getElementById('searchInput');
+  const searchTerm = searchInput ? searchInput.value.trim() : '';
+
+  if (searchTerm === '') {
+    resultInfo.textContent = `Total: ${totalCount} data`;
+    resultInfo.style.color = '#999';
+  } else {
+    resultInfo.textContent = `Ditemukan ${visibleCount} dari ${totalCount} data`;
+    resultInfo.style.color = 'var(--secondary)';
+    resultInfo.style.fontWeight = '500';
+  }
+}
+
+/**
+ * Check dan tampilkan no results message
+ */
+function checkNoResults(table, visibleCount) {
+  // Remove old message
+  const oldMessage = table.parentElement.querySelector('.no-results-message');
+  if (oldMessage) oldMessage.remove();
+
+  // Tampilkan message jika tidak ada hasil
+  if (visibleCount === 0) {
+    const noResultsDiv = document.createElement('div');
+    noResultsDiv.className = 'no-results-message';
+    noResultsDiv.innerHTML = `
+      <strong>Tidak ada hasil yang cocok</strong>
+      <p>Coba ubah pencarian Anda</p>
+    `;
+    table.parentElement.appendChild(noResultsDiv);
+  }
+}
+
+/**
+ * Reset search
+ */
+function resetSearch() {
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.value = '';
+    searchInput.focus();
+  }
+
+  filterDatabase();
+}
+
+/**
+ * Override showData function untuk reset search saat tab switch
+ */
+const originalShowData = window.showData || function() {};
+
+if (typeof originalShowData === 'function') {
+  window.showData = function(type) {
+    originalShowData(type);
+    
+    // Reset search saat switch tab
+    setTimeout(() => {
+      resetSearch();
+    }, 50);
+  };
+}
+
+/**
+ * Initialize search saat page load
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    // Handle Escape key
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        resetSearch();
+      }
+    });
+
+    // Initialize result info
+    const activeTab = document.querySelector('.data-box.active');
+    if (activeTab) {
+      const table = activeTab.querySelector('table');
+      if (table) {
+        const rows = table.querySelectorAll('tbody tr, tr:not(:first-child)');
+        let totalCount = 0;
+        rows.forEach(row => {
+          if (!row.querySelector('th')) totalCount++;
+        });
+        updateSearchInfo(totalCount, totalCount);
+      }
+    }
+  }
+});
+
+console.log('✅ Search Database (Simple) Loaded');
+// ================= BACK TO TOP BUTTON FUNCTIONALITY =================
+
+/**
+ * Scroll ke atas dengan smooth animation
+ */
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+    duration: 500
+  });
+}
+
+/**
+ * Toggle button visibility saat scroll
+ */
+function toggleBackToTopBtn() {
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  if (!backToTopBtn) return;
+
+  // Tampilkan button jika scroll > 300px
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('show');
+    backToTopBtn.classList.remove('hide');
+  } else {
+    backToTopBtn.classList.add('hide');
+    backToTopBtn.classList.remove('show');
+  }
+}
+
+/**
+ * Debounce scroll event untuk performance
+ */
+let scrollTimeout;
+function handleScroll() {
+  if (scrollTimeout) clearTimeout(scrollTimeout);
+  
+  scrollTimeout = setTimeout(() => {
+    toggleBackToTopBtn();
+  }, 50);
+}
+
+/**
+ * Initialize back to top button
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  
+  if (backToTopBtn) {
+    // Show button on scroll
+    window.addEventListener('scroll', handleScroll);
+    
+    // Click untuk scroll to top
+    backToTopBtn.addEventListener('click', scrollToTop);
+    
+    // Initial check
+    toggleBackToTopBtn();
+  }
+});
+
+/**
+ * Cleanup on page unload
+ */
+window.addEventListener('beforeunload', function() {
+  if (scrollTimeout) clearTimeout(scrollTimeout);
+});
+
+console.log('✅ Back to Top Button Loaded');

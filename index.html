@@ -12,7 +12,7 @@
   <div class="header-top">
 
     <div class="logo">
-      <img src="asset/img/logo.png.png" class="logo-img">
+      <img src="asset/img/logo.png" class="logo-img">
 
       <div class="logo-text">
         <h1>KPMB Makassar</h1>
@@ -54,6 +54,9 @@
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSe8jGoWFxSE7pTYZ7QPN3ruIYFSacEZxzEukiRrInnYF1o7lA/viewform?pli=1" target="_blank">Registrasi</a>
     <a onclick="showPage('galeri')">Galeri</a>
     <a href="https://mabiro.respacestudio.id/" target="_blank">Mabiro</a>
+    
+</button>
+ 
 </nav>
 
 </header>
@@ -796,11 +799,27 @@
 
 <div id="databaseModal" class="modal">
   <div class="modal-content">
-
+    
     <button class="close-popup" onclick="closeDatabase()">✕</button>
-
     <h2>Database KPMB</h2>
 
+    <!-- ================= SEARCH BOX (BARU) ================= -->
+    <div class="database-search-wrapper">
+      <div class="search-box-container">
+        <div class="search-icon">🔍</div>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-box" 
+          placeholder="Cari nama, kampus..."
+          onkeyup="filterDatabase()"
+        >
+        <div class="search-clear" id="clearBtn" onclick="resetSearch()">✕</div>
+      </div>
+      <div class="search-result-info" id="resultInfo"></div>
+    </div>
+
+    <!-- TAB MENU (EXISTING) -->
     <div class="tab-menu">
       <button onclick="showData('alumni')">Alumni</button>
       <button onclick="showData('warga')">Warga</button>
@@ -2075,6 +2094,9 @@
 <!-- TARUH SCRIPT DI SINI -->
 <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
 <script src="script.js"></script>
-
+<button id="backToTopBtn" class="back-to-top-btn" onclick="scrollToTop()" title="Kembali ke atas">
+  <span class="arrow">↑</span>
+</button>
+ 
 </body>
 </html>
