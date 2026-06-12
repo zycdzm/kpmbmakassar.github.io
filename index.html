@@ -161,39 +161,71 @@
 </section>
 <!-- AKHIR HOME -->
   <!-- ================= TENTANG ================= -->
-<section class="page container" id="tentang">
-  <h2>Tentang KPMB Makassar</h2>
-  <p>
-    KPMB Makassar adalah organisasi mahasiswa asal Balikpapan yang menempuh pendidikan di Makassar.
-    Organisasi ini menjadi wadah kebersamaan, pengembangan diri, serta kontribusi sosial bagi anggota.
-  </p>
+<section class="page" id="tentang">
 
-  <div class="cards">
+  <!-- HERO TENTANG -->
+  <div class="about-hero">
 
-    <div class="card" onclick="bukaNilai()">
-      <h3>Nilai Organisasi</h3>
-      <p>Klik untuk melihat nilai-nilai yang menjadi dasar organisasi.</p>
+    <div class="about-overlay">
+
+      <h1>Tentang KPMB Makassar</h1>
+
+      <p>
+        Keluarga Pelajar Mahasiswa Balikpapan di Makassar
+      </p>
+
     </div>
 
-    <div class="card" onclick="bukaSejarah()">
-      <h3>Sejarah</h3>
-      <p>Klik untuk membaca buku sejarah.</p>
+  </div>
+    <div class="about-content">
+
+  <div class="about-image">
+    <img src="asset/img/rakpel3.jpg" alt="Pengurus KPMB">
+  </div>
+  <!-- ISI TENTANG -->
+  <div class="container">
+
+    <div class="about-text">
+
+      <h2>Mengenal KPMB Makassar</h2>
+
+      <p>
+        KPMB Makassar adalah organisasi mahasiswa asal Balikpapan
+        yang menempuh pendidikan di Kota Makassar.
+        Organisasi ini menjadi wadah kebersamaan,
+        pengembangan diri serta kontribusi sosial
+        bagi seluruh anggota.
+      </p>
+
     </div>
 
-    <div class="card" onclick="bukaDatabase()">
-      <h3>Database</h3>
-      <p>Klik untuk melihat data warga dan alumni</p>
-    </div>
+    <div class="cards">
 
-    <div class="card" onclick="bukaVisiMisi()">
-      <h3>Visi Misi</h3>
-      <p>Klik untuk melihat visi dan misi organisasi.</p>
+      <div class="card" onclick="bukaNilai()">
+        <h3>Nilai Organisasi</h3>
+        <p>Klik untuk melihat nilai organisasi.</p>
+      </div>
+
+      <div class="card" onclick="bukaSejarah()">
+        <h3>Sejarah</h3>
+        <p>Klik untuk membaca sejarah KPMB.</p>
+      </div>
+
+      <div class="card" onclick="bukaDatabase()">
+        <h3>Database</h3>
+        <p>Data warga dan alumni.</p>
+      </div>
+
+      <div class="card" onclick="bukaVisiMisi()">
+        <h3>Visi Misi</h3>
+        <p>Visi dan misi organisasi.</p>
+      </div>
+
     </div>
 
   </div>
 
 </section>
-
 <!-- ================= STRUKTUR ================= -->
   <section class="page container" id="struktur">
     <h2>Struktur Pengurus</h2>
@@ -664,8 +696,8 @@
         <p>Klik untuk membaca</p>
       </div>
     </div>
-
-  <div id="beritaModal" class="berita-modal" onclick="tutupBerita(event)">
+</section>
+<div id="beritaModal" class="berita-modal" onclick="tutupBerita(event)">
   <div class="berita-popup">
     <button class="close-popup" onclick="closeBerita()">✕</button>
     <img id="beritaModalImg" src="" alt="">
@@ -673,7 +705,6 @@
     <p id="beritaModalIsi"></p>
   </div>
 </div>
-</section>
 <!-- ================= GALERI ================= -->
 <section class="page container" id="galeri">
   <h2>Galeri Kegiatan</h2>

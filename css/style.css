@@ -32,7 +32,7 @@ body{
     box-shadow:0 2px 15px rgba(0,0,0,.08);
     position:sticky;
     top:0;
-    z-index:999;
+    z-index:100;
 }
 
 .header-top{
@@ -1998,4 +1998,162 @@ body{
 
 img{
     max-width:100%;
+}
+#tentang .card{
+  opacity:0;
+  transform:translateY(40px);
+  animation:cardFade .8s forwards;
+}
+
+#tentang .card:nth-child(1){
+  animation-delay:.1s;
+}
+
+#tentang .card:nth-child(2){
+  animation-delay:.2s;
+}
+
+#tentang .card:nth-child(3){
+  animation-delay:.3s;
+}
+
+#tentang .card:nth-child(4){
+  animation-delay:.4s;
+}
+
+@keyframes cardFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+/* Animasi halaman */
+.page{
+  display:none;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+.page.active{
+  display:block;
+  animation:fadePage .6s ease forwards;
+}
+
+@keyframes fadePage{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+.about-hero{
+    height:60vh;
+
+    background:
+    linear-gradient(
+      rgba(0,0,0,.5),
+      rgba(0,0,0,.5)
+    ),
+    url('asset/img/rakpel3.jpg');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}.about-overlay{
+    color:white;
+    padding:20px;
+}
+.about-overlay h1{
+    font-size:60px;
+    font-weight:700;
+    margin-bottom:15px;
+} .about-overlay p{
+    font-size:22px;
+    opacity:.9;
+}
+.about-text{
+    margin-top:60px;
+    text-align:center;
+}
+
+.about-text h2{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.about-text p{
+    max-width:900px;
+    margin:auto;
+    line-height:1.8;
+}
+.about-overlay{
+    animation:fadeHero 1.2s ease;
+}
+
+@keyframes fadeHero{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+@media(max-width:768px){
+
+    .about-hero{
+        height:40vh;
+    }
+
+    .about-overlay h1{
+        font-size:34px;
+    }
+
+    .about-overlay p{
+        font-size:16px;
+    }
+
+}
+.about-image{
+  margin:40px auto;
+  text-align:center;
+}
+
+.about-image img{
+  width:100%;
+  max-width:900px;
+  height:450px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+.about-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+  margin-top:60px;
+}
+
+.about-image img{
+  width:100%;
+  border-radius:20px;
+}
+
+@media(max-width:768px){
+  .about-content{
+    grid-template-columns:1fr;
+  }
 }
