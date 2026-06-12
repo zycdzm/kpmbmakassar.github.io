@@ -233,20 +233,15 @@ function initBook() {
     const isMobile = window.innerWidth <= 768;
 
     pageFlip = new St.PageFlip(bookEl, {
-        width: isMobile ? 280 : 450,
-        height: isMobile ? 400 : 600,
-        size: "stretch",
-        minWidth: 250,
-        maxWidth: 450,
-        minHeight: 350,
-        maxHeight: 600,
-        showCover: true,
-        usePortrait: true,
-        autoSize: true,
-        mobileScrollSupport: true,
-        maxShadowOpacity: 0.4
-    });
-
+    width: 450,
+    height: 600,
+    size: "fixed",
+    showCover: true,
+    usePortrait: true,
+    autoSize: true,
+    maxShadowOpacity: 0.4,
+    mobileScrollSupport: true
+});
     const pages = [];
     for (let i = 1; i <= 127; i++) {
         pages.push(`asset/book/page${i}.jpg`);
