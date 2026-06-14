@@ -787,46 +787,44 @@ body{
     color:#8b6340;
     font-size:13px;
 }
-.dropdown{
-    position:relative;
-    display:inline-block;
-}
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
 
-.dropdown-menu{
-    position:absolute;
-    top:100%;
-    left:0;
-    min-width:220px;
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    z-index: 10000;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    opacity: 1;
+    visibility: visible;
+    padding: 12px 0;
+  }
 
-    background:#fff;
-    border-radius:10px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+  .dropdown-menu a {
+    display: block;
+    padding: 12px 18px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+  }
+ 
+  .dropdown-menu a:hover {
+    background: #f4f4f4;
+  }
+ 
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
 
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(10px);
-
-    transition:.3s;
-    z-index:10000;;
-}
-
-.dropdown-menu a{
-    display:block;
-    padding:12px 18px;
-    color:#333;
-    text-decoration:none;
-    cursor:pointer;
-}
-
-.dropdown-menu a:hover{
-    background:#f4f4f4;
-}
-
-.dropdown:hover .dropdown-menu{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-}
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
@@ -1616,17 +1614,27 @@ body{
 
 @media (max-width: 768px){
   .dropdown {
-  position: static;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: auto;
-  right: auto;
-  z-index: 10000;
-}
-
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    z-index: 10000;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-10px);
+    transition: .3s;
+    padding: 12px 0;
+  }
+ 
   .header-top{
     padding:12px 15px;
   }

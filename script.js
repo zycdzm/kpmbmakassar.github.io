@@ -835,3 +835,37 @@ window.addEventListener('beforeunload', function() {
 });
 
 console.log('✅ Back to Top Button Loaded');
+// ===== DROPDOWN FORCE HIDE FIX =====
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  const dropdown = document.querySelector('.dropdown');
+  
+  if (!dropdownMenu || !dropdown) return;
+  
+  // Set initial state - FORCE HIDDEN
+  dropdownMenu.style.cssText = `
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s, visibility 0.3s !important;
+  `;
+  
+  // Show on hover
+  dropdown.addEventListener('mouseenter', function() {
+    dropdownMenu.style.cssText = `
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.3s, visibility 0.3s !important;
+      transform: translateX(-50%) translateY(0) !important;
+    `;
+  });
+  
+  // Hide on mouse leave
+  dropdown.addEventListener('mouseleave', function() {
+    dropdownMenu.style.cssText = `
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transition: opacity 0.3s, visibility 0.3s !important;
+    `;
+  });
+});
+// ===== END DROPDOWN FIX =====
