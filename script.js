@@ -835,3 +835,39 @@ window.addEventListener('beforeunload', function() {
 });
 
 console.log('✅ Back to Top Button Loaded');
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+    if (dropdown) {
+        // Toggle dropdown saat click pada dropdown
+        dropdown.addEventListener("click", function(e) {
+            e.stopPropagation(); // Stop event bubbling
+            console.log("Dropdown clicked");
+            this.classList.toggle("active");
+        });
+
+        // Close dropdown saat click pada item di menu
+        if (dropdownMenu) {
+            const menuItems = dropdownMenu.querySelectorAll("a");
+            menuItems.forEach(item => {
+                item.addEventListener("click", function(e) {
+                    e.stopPropagation(); // Jangan close dropdown seketika
+                    // Biarkan showPage() selesai dulu
+                    setTimeout(() => {
+                        dropdown.classList.remove("active");
+                    }, 100);
+                });
+            });
+        }
+    }
+
+    // Close dropdown saat click di luar
+    document.addEventListener("click", function(e) {
+        if (dropdown && !dropdown.contains(e.target)) {
+            dropdown.classList.remove("active");
+        }
+    });
+
+    console.log('✅ Dropdown Fixed');
+});

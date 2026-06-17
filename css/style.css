@@ -796,15 +796,16 @@ body{
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(0);
     min-width: 220px;
     z-index: 10000;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0,0,0,.15);
-    opacity: 1;
-    visibility: visible;
+    opacity: 0;
+    visibility: hidden;
     padding: 12px 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
   .dropdown-menu a {
@@ -819,10 +820,10 @@ body{
     background: #f4f4f4;
   }
  
-  .dropdown:hover .dropdown-menu {
+  .dropdown:hover .dropdown-menu,
+  .dropdown.active .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
   }
 
 /* ================= RESPONSIVE ================= */
@@ -1622,7 +1623,7 @@ body{
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-10px);
     min-width: 220px;
     z-index: 10000;
     background: #fff;
@@ -1630,9 +1631,14 @@ body{
     box-shadow: 0 10px 25px rgba(0,0,0,.15);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(-10px);
-    transition: .3s;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     padding: 12px 0;
+  }
+
+  .dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
   }
  
   .header-top{
