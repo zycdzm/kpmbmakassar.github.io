@@ -847,16 +847,12 @@ document.addEventListener("DOMContentLoaded", () => {
             this.classList.toggle("active");
         });
 
-        // Close dropdown saat click pada item di menu
+        // Close dropdown immediately saat click pada item di menu
         if (dropdownMenu) {
             const menuItems = dropdownMenu.querySelectorAll("a");
             menuItems.forEach(item => {
                 item.addEventListener("click", function(e) {
-                    e.stopPropagation(); // Jangan close dropdown seketika
-                    // Biarkan showPage() selesai dulu
-                    setTimeout(() => {
-                        dropdown.classList.remove("active");
-                    }, 100);
+                    dropdown.classList.remove("active"); // Close immediately
                 });
             });
         }
