@@ -55,6 +55,21 @@ function backToKegiatan() {
 // ================== PAGE NAVIGATION ==================
 
 function showPage(id) {
+    // Force close dropdown!
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    
+    if (dropdown) {
+        dropdown.classList.remove("active");
+        console.log("🔴 showPage: Closed dropdown - removed active class");
+    }
+    
+    if (dropdownMenu) {
+        dropdownMenu.style.opacity = "0";
+        dropdownMenu.style.visibility = "hidden";
+        console.log("🔴 showPage: Forced dropdown menu hidden");
+    }
+    
     // Hide semua page
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
@@ -839,12 +854,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown");
     const dropdownMenu = document.querySelector(".dropdown-menu");
 
+    // Hitung posisi dropdown-menu (khusus mode mobile) agar tidak
+    // ketimpa/kepotong oleh overflow .navbar. Posisi dihitung relatif
+    // viewport karena dropdown-menu pakai position:fixed di mobile.
+    function positionDropdownMobile() {
+        if (!dropdown || !dropdownMenu) return;
+        if (window.innerWidth > 768) return; // hanya untuk mobile
+
+        const rect = dropdown.getBoundingClientRect();
+        const top = rect.bottom + 8; // jarak 8px di bawah tombol "Divisi"
+        dropdownMenu.style.setProperty("--dropdown-top", top + "px");
+        dropdownMenu.style.top = top + "px";
+    }
+
     if (dropdown) {
         // Toggle dropdown saat click pada dropdown
         dropdown.addEventListener("click", function(e) {
             e.stopPropagation(); // Stop event bubbling
             console.log("Dropdown clicked");
             this.classList.toggle("active");
+
+            if (this.classList.contains("active")) {
+                positionDropdownMobile();
+            }
         });
 
         // Close dropdown immediately saat click pada item di menu
@@ -852,11 +884,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const menuItems = dropdownMenu.querySelectorAll("a");
             menuItems.forEach(item => {
                 item.addEventListener("click", function(e) {
-                    dropdown.classList.remove("active"); // Close immediately
+                    console.log("❌ Menu item clicked - closing dropdown");
+                    dropdown.classList.remove("active");
+                    dropdownMenu.style.opacity = "0";
+                    dropdownMenu.style.visibility = "hidden";
+                    e.preventDefault(); // Jangan propagate event
                 });
             });
         }
     }
+
+    // Reposisi ulang saat resize / scroll selagi dropdown masih terbuka
+    window.addEventListener("resize", positionDropdownMobile);
+    window.addEventListener("scroll", function() {
+        if (dropdown && dropdown.classList.contains("active")) {
+            positionDropdownMobile();
+        }
+    }, { passive: true });
 
     // Close dropdown saat click di luar
     document.addEventListener("click", function(e) {
