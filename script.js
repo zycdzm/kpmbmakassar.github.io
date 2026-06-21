@@ -917,3 +917,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log('✅ Dropdown Fixed');
 });
+
+// ================== NAVBAR SCROLL FADE INDICATOR (MOBILE) ==================
+document.addEventListener("DOMContentLoaded", () => {
+    const navbarEl = document.querySelector(".navbar");
+    const navbarWrap = document.querySelector(".navbar-wrap");
+
+    if (!navbarEl || !navbarWrap) return;
+
+    function updateNavbarFade() {
+        // Cuma relevan di mobile (fade-nya juga cuma di-render via CSS mobile)
+        const maxScroll = navbarEl.scrollWidth - navbarEl.clientWidth;
+        const isAtEnd = maxScroll <= 1 || navbarEl.scrollLeft >= maxScroll - 2;
+        navbarWrap.classList.toggle("scrolled-end", isAtEnd);
+    }
+
+    navbarEl.addEventListener("scroll", updateNavbarFade, { passive: true });
+    window.addEventListener("resize", updateNavbarFade);
+
+    // Cek kondisi awal (misal navbar gak overflow sama sekali di tablet/desktop)
+    updateNavbarFade();
+});

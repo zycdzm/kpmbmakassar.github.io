@@ -25,6 +25,7 @@
     </div>
   </div>
 
+  <div class="navbar-wrap">
   <nav class="navbar">
     <a onclick="showPage('home')">Beranda</a>
     <a onclick="showPage('tentang')">Tentang</a>
@@ -59,9 +60,9 @@
     <a onclick="showPage('galeri')">Galeri</a>
     <a href="https://mabiro.respacestudio.id/" target="_blank">Mabiro</a>
     
-</button>
- 
 </nav>
+  <span class="navbar-fade" aria-hidden="true">›</span>
+  </div>
 
 </header>
 
@@ -642,7 +643,26 @@
 
   <h2>Divisi KPMB</h2>
 
+  <!-- Kartu grid 3 divisi (tetap sama seperti aslinya) -->
+  <div class="struktur-grid">
+    <div class="box" onclick="tampilkanDivisi('Divisi PSDM')" style="cursor:pointer;">
+      <img src="asset/img/full psdm.jpg" alt="Divisi PSDM">
+      <h3>Divisi PSDM</h3>
+      <p>Koordinator: Hartika Julianty</p>
+    </div>
 
+    <div class="box" onclick="tampilkanDivisi('Divisi Humas')" style="cursor:pointer;">
+      <img src="asset/img/full humas.png" alt="Divisi Humas">
+      <h3>Divisi Humas</h3>
+      <p>Koordinator: Akhmad Nurwahid</p>
+    </div>
+
+    <div class="box" onclick="tampilkanDivisi('Divisi Biro')" style="cursor:pointer;">
+      <img src="asset/img/full biro.png" alt="Divisi Biro">
+      <h3>Divisi Biro</h3>
+      <p>Koordinator: Dewi Hardiani</p>
+    </div>
+  </div>
 
   <!-- Area detail divisi yang muncul saat diklik -->
   <div id="anggotaDivisi"></div>
@@ -735,7 +755,7 @@
       <span>Twitter/X</span>
     </a>
 
-    <a href="https://facebook.com/kpmbmsc" target="_blank">
+    <a href="https://facebook.com/KPMB MAKASSAR" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
       <span>Facebook</span>
     </a>
