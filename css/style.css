@@ -2408,6 +2408,52 @@ img{
   font-weight: bold;
 }
 
+/* ================= FLOATING WHATSAPP BUTTON ================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  left: 20px;
+  width: 52px;
+  height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  z-index: 99;
+  transition: transform .25s ease, box-shadow .25s ease;
+  animation: waPulse 2.4s ease-in-out infinite;
+}
+
+.whatsapp-float img{
+  width: 28px;
+  height: 28px;
+}
+
+.whatsapp-float:hover{
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,.3);
+}
+
+@keyframes waPulse{
+  0%, 100%{ box-shadow: 0 4px 14px rgba(37,211,102,.35); }
+  50%{ box-shadow: 0 4px 22px rgba(37,211,102,.65); }
+}
+
+@media(max-width:768px){
+  .whatsapp-float{
+    width: 46px;
+    height: 46px;
+    bottom: 20px;
+    left: 16px;
+  }
+  .whatsapp-float img{
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .back-to-top-btn:hover {
   background: linear-gradient(135deg, #5f7d8f 0%, var(--secondary) 100%);
   transform: translateY(-5px);

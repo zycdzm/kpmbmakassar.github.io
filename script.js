@@ -938,3 +938,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cek kondisi awal (misal navbar gak overflow sama sekali di tablet/desktop)
     updateNavbarFade();
 });
+
+// ================== TUTUP MODAL DENGAN TOMBOL ESC ==================
+document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+
+    // Semua modal di situs ini pakai pola class "active" buat nampil/sembunyi,
+    // jadi cukup satu listener buat nutup modal manapun yang lagi kebuka.
+    const modalIds = [
+        "bookModal",
+        "databaseModal",
+        "visiModal",
+        "nilaiModal",
+        "beritaModal",
+        "lightbox",
+        "imgPreview"
+    ];
+
+    modalIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("active");
+    });
+
+    // Dropdown navbar juga ikut ditutup biar konsisten
+    const dropdown = document.querySelector(".dropdown");
+    if (dropdown) dropdown.classList.remove("active");
+});
