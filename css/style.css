@@ -2656,3 +2656,19 @@ img{
     transform: none;
   }
 }
+.maps-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:12px 20px;
+    background:#7694A3;
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.maps-btn:hover{
+    background:#5f7d8c;
+    transform:translateY(-2px);
+}
