@@ -65,9 +65,13 @@ function showPage(id) {
     }
     
     if (dropdownMenu) {
-        dropdownMenu.style.opacity = "0";
-        dropdownMenu.style.visibility = "hidden";
-        console.log("🔴 showPage: Forced dropdown menu hidden");
+        // Jangan paksa inline style di sini (opacity/visibility) — itu bikin
+        // dropdown gak bisa kebuka lagi setelah ini, karena inline style
+        // selalu menang dari CSS class .dropdown.active .dropdown-menu.
+        // Cukup bersihkan inline style biar dikontrol CSS class lagi.
+        dropdownMenu.style.opacity = "";
+        dropdownMenu.style.visibility = "";
+        console.log("🔴 showPage: Closed dropdown via class (inline style dibersihkan)");
     }
     
     // Hide semua page
@@ -886,8 +890,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.addEventListener("click", function(e) {
                     console.log("❌ Menu item clicked - closing dropdown");
                     dropdown.classList.remove("active");
-                    dropdownMenu.style.opacity = "0";
-                    dropdownMenu.style.visibility = "hidden";
+                    // Bersihkan inline style (bukan paksa hidden) biar CSS
+                    // class yang ngatur lagi pas dropdown dibuka berikutnya.
+                    dropdownMenu.style.opacity = "";
+                    dropdownMenu.style.visibility = "";
                     e.preventDefault(); // Jangan propagate event
                 });
             });
