@@ -176,15 +176,8 @@ const dataAnggota = {
 
 // ================== DIVISI DISPLAY ==================
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll("#struktur .box").forEach(box => {
-        box.addEventListener("click", () => {
-            const namaDivisi = box.dataset.divisi || box.querySelector('h3').textContent;
-            tampilkanDivisi(namaDivisi);
-            showPage('divisi');
-        });
-    });
-});
+// (Klik foto pengurus sekarang membuka lightbox + zoom, lihat bagian
+// "GALLERY IMAGE VIEWER" di bawah — bukan lagi pindah ke halaman Divisi)
 
 function tampilkanDivisi(divisi) {
     const data = dataAnggota[divisi];
@@ -543,7 +536,7 @@ document.querySelectorAll('.proker-header').forEach(btn => {
 
 // ================== GALLERY IMAGE VIEWER ==================
 
-const images = document.querySelectorAll('.gallery-img');
+const images = document.querySelectorAll('.gallery-img, #struktur .box img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const closeBtn = document.querySelector('.close-btn');
