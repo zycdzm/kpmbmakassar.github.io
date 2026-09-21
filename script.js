@@ -101,133 +101,290 @@ function showPage(id) {
     });
 }
 
-// ================== DATA ANGGOTA ==================
-const dataAnggota = {
-    "Divisi PSDM": [
-        {
-            nama: "Hartika Julianty Nursuhada",
-            foto: "asset/img/psdm.jpg",
-            unit: "Koordinator",
-            program: "Upgarding, LDK",
-            desc: "Penanggung Jawab Program-Program Kerja Bidang Pengembangan Sumber Daya Manusia."
-        },
-        {
-            nama: "Amanda Nur Fadillah",
-            foto: "asset/img/manda.jpg",
-            unit: "Manuntung Studi Club",
-            program: "Manuntung Sport, Manuntung Kajian",
-            desc: "Pelaksana Teknis Pengembangan pada Bidang Ilmiah, Minat dan Bakat."
-        },
-        {
-            nama: "Daniel Putra Natama Lumban Gaol",
-            foto: "asset/img/daniel.jpg",
-            unit: "Manuntung English Improvement",
-            program: "Manuntung Class",
-            desc: "Pelaksana Teknis Program-Program Pengembangan Kemampuan Berbahasa Inggris."
-        }
-    ],
-    "Divisi Humas": [
-        {
-            nama: "Akhmad Nurwahid",
-            foto: "asset/img/humas.png",
-            unit: "Koordinator",
-            program: "",
-            desc: "Penanggung Jawab Program-Program Kerja Divisi Hubungan Masyarakat."
-        },
-        {
-            nama: "Samuel Putra Natama Lumban Gaol",
-            foto: "asset/img/samuel.jpg",
-            unit: "Informasi & Komunikasi",
-            program: "Rebuild Website KPMB",
-            desc: "Pelaksana Teknis Program-Program Internal dan Eksternal KPMB Makassar."
-        },
-        {
-            nama: "Afkhar Fahry Wardana",
-            foto: "asset/img/pari.jpg",
-            unit: "Media & Kreatif",
-            program: "Arsip Kegiatan",
-            desc: "Penanggung Jawab Pengelolaan Konten pada Media KPMB Makassar."
-        }
-    ],
-    "Divisi Biro": [
-        {
-            nama: "Dewi Hardiani",
-            foto: "asset/img/dewi.jpg",
-            unit: "Kepala Biro",
-            program: "Moas, Menabur, HUT Asrama",
-            desc: "Penanggung Jawab Kepala Operasional Asrama KPMB Makassar."
-        },
-        {
-            nama: "Ermi",
-            foto: "asset/img/ermi.png",
-            unit: "Keuangan",
-            program: "Moas Menabur HUT Asrama",
-            desc: "Penanggung Jawab Pembukuan dan Pengelolaan Keuangan Asrama."
-        },
-        {
-            nama: "Andi Miftahul Jannah",
-            foto: "asset/img/mita.jpg",
-            unit: "Inventaris & Logistik",
-            program: "Moas Menabur HUT Asrama",
-            desc: "Penanggung Jawab Pengelolaan Inventaris Organisasi."
-        }
-    ]
-};
+// ================== SUPABASE SETUP ==================
+const SUPABASE_URL = "https://pcpnzmiqpbogmmbqvysf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_dwLyRRGPv5q13PcFkz0CLw_pa9OLs3J";
+const supabaseClient = window.supabase
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
+
+let divisiAktif = null; // divisi yang lagi dibuka
+let isAdminDivisi = false; // status login admin
+
+// ================== AUTH ADMIN DIVISI ==================
+
+async function cekSesiDivisi() {
+    if (!supabaseClient) return;
+    const { data } = await supabaseClient.auth.getSession();
+    isAdminDivisi = !!data.session;
+    updateAdminBarDivisi();
+}
+
+function updateAdminBarDivisi() {
+    const btnLogin = document.getElementById("btnLoginDivisi");
+    const controls = document.getElementById("divisiAdminControls");
+    if (!btnLogin || !controls) return;
+
+    if (isAdminDivisi) {
+        btnLogin.style.display = "none";
+        controls.style.display = "flex";
+    } else {
+        btnLogin.style.display = "inline-block";
+        controls.style.display = "none";
+    }
+}
+
+function bukaDivisiLogin() {
+    const modal = document.getElementById("divisiLoginModal");
+    if (modal) modal.classList.add("active");
+    document.getElementById("divisiLoginError")?.classList.remove("show");
+}
+
+function closeDivisiLogin() {
+    document.getElementById("divisiLoginModal")?.classList.remove("active");
+}
+
+async function cekLoginDivisi(event) {
+    event.preventDefault();
+    const email = document.getElementById("divisiEmail").value.trim();
+    const password = document.getElementById("divisiPassword").value;
+    const errorEl = document.getElementById("divisiLoginError");
+
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+    if (error) {
+        errorEl?.classList.add("show");
+        return false;
+    }
+
+    errorEl?.classList.remove("show");
+    isAdminDivisi = true;
+    updateAdminBarDivisi();
+    closeDivisiLogin();
+    if (divisiAktif) tampilkanDivisi(divisiAktif);
+    return false;
+}
+
+async function logoutDivisi() {
+    await supabaseClient.auth.signOut();
+    isAdminDivisi = false;
+    updateAdminBarDivisi();
+    if (divisiAktif) tampilkanDivisi(divisiAktif);
+}
 
 // ================== DIVISI DISPLAY ==================
 
-// (Klik foto pengurus sekarang membuka lightbox + zoom, lihat bagian
-// "GALLERY IMAGE VIEWER" di bawah — bukan lagi pindah ke halaman Divisi)
+async function tampilkanDivisi(divisi) {
+    divisiAktif = divisi;
+    const anggotaDiv = document.getElementById("anggotaDivisi");
+    if (!anggotaDiv || !supabaseClient) return;
 
-function tampilkanDivisi(divisi) {
-    const data = dataAnggota[divisi];
-    if (!data) return;
+    anggotaDiv.innerHTML = `<p class="divisi-loading">Memuat data...</p>`;
 
-    const koor = data[0];
+    const { data, error } = await supabaseClient
+        .from("anggota_divisi")
+        .select("*")
+        .eq("divisi", divisi)
+        .order("urutan", { ascending: true });
+
+    if (error || !data) {
+        anggotaDiv.innerHTML = `<p class="divisi-loading">Gagal memuat data. Coba refresh halaman.</p>`;
+        return;
+    }
+
+    if (data.length === 0) {
+        anggotaDiv.innerHTML = `<p class="divisi-loading">Belum ada anggota untuk divisi ini.</p>`;
+        return;
+    }
+
+    const koor = data.find(item => item.peran === "koordinator") || data[0];
+    const anggotaList = data.filter(item => item.id !== koor.id);
+
     let anggotaHTML = "";
-
-    data.slice(1).forEach(item => {
+    anggotaList.forEach(item => {
         anggotaHTML += `
             <div class="tim-card">
-                <img src="${item.foto}" alt="${item.nama}">
+                ${isAdminDivisi ? `
+                <div class="card-admin-actions">
+                    <button class="btn-edit-anggota" onclick='bukaFormAnggota("edit", ${JSON.stringify(item).replace(/'/g, "&#39;")})' title="Edit">✎</button>
+                    <button class="btn-hapus-anggota" onclick="hapusAnggota(${item.id}, '${item.nama.replace(/'/g, "\\'")}')" title="Hapus">✕</button>
+                </div>` : ""}
+                <img src="${item.foto_url}" alt="${item.nama}">
                 <h4>${item.nama}</h4>
                 <p>${item.unit}</p>
             </div>
         `;
     });
 
-    const anggotaDiv = document.getElementById("anggotaDivisi");
-    if (anggotaDiv) {
-        anggotaDiv.innerHTML = `
-            <div class="detail-divisi">
-                <div class="divisi-header">
-                    <div class="divisi-text">
-                        <small>Koordinator Divisi</small>
-                        <h2>${divisi}</h2>
-                        <p class="ketua-deskripsi">${koor.desc}</p>
-                        <br>
-                        <p><strong>Program Kerja:</strong> ${koor.program || "-"}</p>
-                    </div>
-                    <div class="koordinator">
-                        <img src="${koor.foto}" alt="${koor.nama}">
-                        <div class="nama-koor">${koor.nama}</div>
-                    </div>
+    anggotaDiv.innerHTML = `
+        <div class="detail-divisi">
+            <div class="divisi-header">
+                <div class="divisi-text">
+                    <small>Koordinator Divisi</small>
+                    <h2>${divisi}</h2>
+                    <p class="ketua-deskripsi">${koor.deskripsi}</p>
+                    <br>
+                    <p><strong>Program Kerja:</strong> ${koor.program || "-"}</p>
                 </div>
-                <div class="sub-divisi-title">
-                    <small>Anggota Divisi</small>
-                    <h3>Struktur Divisi</h3>
-                </div>
-                <div class="tim-grid">
-                    ${anggotaHTML}
+                <div class="koordinator">
+                    ${isAdminDivisi ? `
+                    <div class="card-admin-actions">
+                        <button class="btn-edit-anggota" onclick='bukaFormAnggota("edit", ${JSON.stringify(koor).replace(/'/g, "&#39;")})' title="Edit">✎</button>
+                        <button class="btn-hapus-anggota" onclick="hapusAnggota(${koor.id}, '${koor.nama.replace(/'/g, "\\'")}')" title="Hapus">✕</button>
+                    </div>` : ""}
+                    <img src="${koor.foto_url}" alt="${koor.nama}">
+                    <div class="nama-koor">${koor.nama}</div>
                 </div>
             </div>
-        `;
+            <div class="sub-divisi-title">
+                <small>Anggota Divisi</small>
+                <h3>Struktur Divisi</h3>
+            </div>
+            <div class="tim-grid">
+                ${anggotaHTML || "<p>Belum ada anggota lain.</p>"}
+            </div>
+        </div>
+    `;
 
-        anggotaDiv.scrollIntoView({
-            behavior: "smooth"
-        });
+    anggotaDiv.scrollIntoView({ behavior: "smooth" });
+}
+
+// ================== FORM TAMBAH / EDIT ANGGOTA ==================
+
+function bukaFormAnggota(mode, item) {
+    if (!isAdminDivisi) return;
+
+    document.getElementById("anggotaFormTitle").textContent =
+        mode === "edit" ? "Edit Anggota" : "Tambah Anggota";
+
+    document.getElementById("anggotaId").value = mode === "edit" ? item.id : "";
+    document.getElementById("anggotaDivisiField").value = divisiAktif;
+    document.getElementById("anggotaNama").value = mode === "edit" ? item.nama : "";
+    document.getElementById("anggotaUnit").value = mode === "edit" ? item.unit : "";
+    document.getElementById("anggotaPeran").value = mode === "edit" ? (item.peran || "anggota") : "anggota";
+    document.getElementById("anggotaProgram").value = mode === "edit" ? (item.program || "") : "";
+    document.getElementById("anggotaDeskripsi").value = mode === "edit" ? item.deskripsi : "";
+    document.getElementById("anggotaFoto").value = "";
+
+    const preview = document.getElementById("anggotaFotoPreview");
+    if (mode === "edit" && item.foto_url) {
+        preview.src = item.foto_url;
+        preview.style.display = "block";
+    } else {
+        preview.style.display = "none";
+    }
+
+    document.getElementById("anggotaFormError")?.classList.remove("show");
+    document.getElementById("anggotaFormModal")?.classList.add("active");
+}
+
+function closeFormAnggota() {
+    document.getElementById("anggotaFormModal")?.classList.remove("active");
+}
+
+async function simpanAnggotaForm(event) {
+    event.preventDefault();
+
+    const submitBtn = document.getElementById("anggotaSubmitBtn");
+    const errorEl = document.getElementById("anggotaFormError");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Menyimpan...";
+
+    try {
+        const id = document.getElementById("anggotaId").value;
+        const divisi = document.getElementById("anggotaDivisiField").value;
+        const nama = document.getElementById("anggotaNama").value.trim();
+        const unit = document.getElementById("anggotaUnit").value.trim();
+        const peran = document.getElementById("anggotaPeran").value;
+        const program = document.getElementById("anggotaProgram").value.trim();
+        const deskripsi = document.getElementById("anggotaDeskripsi").value.trim();
+        const fotoFile = document.getElementById("anggotaFoto").files[0];
+
+        let foto_url = document.getElementById("anggotaFotoPreview").src || "";
+
+        // upload foto baru kalau ada file yang dipilih
+        if (fotoFile) {
+            const namaFile = `${Date.now()}_${fotoFile.name.replace(/\s+/g, "_")}`;
+            const { error: uploadError } = await supabaseClient.storage
+                .from("foto-anggota")
+                .upload(namaFile, fotoFile);
+
+            if (uploadError) throw uploadError;
+
+            const { data: publicData } = supabaseClient.storage
+                .from("foto-anggota")
+                .getPublicUrl(namaFile);
+
+            foto_url = publicData.publicUrl;
+        }
+
+        if (!foto_url) throw new Error("Foto wajib diisi");
+
+        const payload = { divisi, nama, unit, peran, program, deskripsi, foto_url };
+
+        // kalau dijadikan koordinator, pastikan urutan = 0 & yang lama diturunkan jadi anggota
+        if (peran === "koordinator") {
+            payload.urutan = 0;
+            await supabaseClient
+                .from("anggota_divisi")
+                .update({ peran: "anggota" })
+                .eq("divisi", divisi)
+                .eq("peran", "koordinator");
+        }
+
+        let result;
+        if (id) {
+            result = await supabaseClient.from("anggota_divisi").update(payload).eq("id", id);
+        } else {
+            if (peran !== "koordinator") {
+                const { count } = await supabaseClient
+                    .from("anggota_divisi")
+                    .select("id", { count: "exact", head: true })
+                    .eq("divisi", divisi);
+                payload.urutan = (count || 0) + 1;
+            }
+            result = await supabaseClient.from("anggota_divisi").insert(payload);
+        }
+
+        if (result.error) throw result.error;
+
+        closeFormAnggota();
+        tampilkanDivisi(divisiAktif);
+    } catch (err) {
+        errorEl.textContent = err.message || "Gagal menyimpan data, coba lagi.";
+        errorEl.classList.add("show");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Simpan";
     }
 }
+
+async function hapusAnggota(id, nama) {
+    if (!isAdminDivisi) return;
+    if (!confirm(`Hapus ${nama} dari divisi ini?`)) return;
+
+    const { error } = await supabaseClient.from("anggota_divisi").delete().eq("id", id);
+    if (error) {
+        alert("Gagal menghapus data: " + error.message);
+        return;
+    }
+    tampilkanDivisi(divisiAktif);
+}
+
+// Preview foto sebelum upload
+document.addEventListener("change", (e) => {
+    if (e.target && e.target.id === "anggotaFoto") {
+        const file = e.target.files[0];
+        const preview = document.getElementById("anggotaFotoPreview");
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        }
+    }
+});
+
+// Cek sesi login admin divisi saat halaman dimuat
+document.addEventListener("DOMContentLoaded", cekSesiDivisi);
 
 // ================== FLIPBOOK ==================
 
@@ -318,6 +475,61 @@ function closeSejarah() {
     if (modal) modal.classList.remove("active");
 }  
 
+// ================== LOGIN DATABASE (WARGA & ALUMNI) ==================
+// GANTI password di bawah ini sesuai keinginan kamu.
+// PENTING: karena situs ini tanpa backend, password di sini hanya
+// jadi penghalang biasa, bukan proteksi keamanan yang kuat.
+const DATABASE_PASSWORD = "gantipassword123";
+
+function bukaDatabaseGate() {
+    if (sessionStorage.getItem("kpmbDatabaseAuth") === "1") {
+        bukaDatabase();
+        return;
+    }
+
+    document.getElementById("bookModal")?.classList.remove("active");
+    document.getElementById("visiModal")?.classList.remove("active");
+    document.getElementById("nilaiModal")?.classList.remove("active");
+
+    const loginError = document.getElementById("loginError");
+    if (loginError) loginError.classList.remove("show");
+
+    const loginInput = document.getElementById("loginPassword");
+    if (loginInput) loginInput.value = "";
+
+    const modal = document.getElementById("loginModal");
+    if (modal) modal.classList.add("active");
+
+    setTimeout(() => loginInput?.focus(), 100);
+}
+
+function cekLoginDatabase(event) {
+    event.preventDefault();
+
+    const input = document.getElementById("loginPassword");
+    const error = document.getElementById("loginError");
+    const password = input ? input.value : "";
+
+    if (password === DATABASE_PASSWORD) {
+        sessionStorage.setItem("kpmbDatabaseAuth", "1");
+        closeLogin();
+        bukaDatabase();
+    } else {
+        if (error) error.classList.add("show");
+        if (input) {
+            input.value = "";
+            input.focus();
+        }
+    }
+
+    return false;
+}
+
+function closeLogin() {
+    const modal = document.getElementById("loginModal");
+    if (modal) modal.classList.remove("active");
+}
+
 // ================== DATABASE ==================
 
 function bukaDatabase() {
@@ -388,11 +600,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const hero = document.querySelector(".hero");
     const heroImages = [
         "asset/img/selamat.jpg",
-        "asset/img/k1.jpg",
-        "asset/img/k2.jpg",
-        "asset/img/k3.jpg",
-        "asset/img/k4.jpg",
-        "asset/img/k5.jpeg"
+        "asset/img/rakpel.jpg",
+        "asset/img/rakpel3.jpg",
+        "asset/img/ldk2.jpg",
+        "asset/img/ldk3.jpg",
+        "asset/img/muswam3.jpg"
     ];
 
     let heroIndex = 0;
