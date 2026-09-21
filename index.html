@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="k6Xo2dmjBXZyFJR4IeQDKk0jaSHn1KXC2zqySyezNMs" />
   <title>KPMB Makassar</title>
   <meta name="description" content="KPMB Makassar - Keluarga Pelajar Mahasiswa Balikpapan di Makassar. Wadah kebersamaan, pengembangan diri, dan kontribusi sosial mahasiswa asal Balikpapan yang menempuh pendidikan di Makassar.">
 
@@ -24,6 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <header class="site-header">
@@ -85,70 +87,80 @@
 <section class="page active" id="home">
 
   <!-- HERO -->
-  <section class="hero">
-    <button class="hero-prev">‹</button>
-    <button class="hero-next">›</button>
+  <section class="hero relative flex items-center justify-center text-center text-white overflow-hidden h-[72vh] md:h-[90vh] bg-cover bg-center bg-no-repeat">
+    <button class="hero-prev absolute top-1/2 -translate-y-1/2 left-5 w-[42px] h-[42px] md:w-[50px] md:h-[50px] rounded-full bg-white/15 backdrop-blur-md border-none text-white text-2xl md:text-3xl cursor-pointer z-[3] transition duration-300 hover:bg-white/30 hover:scale-105">‹</button>
+    <button class="hero-next absolute top-1/2 -translate-y-1/2 right-5 w-[42px] h-[42px] md:w-[50px] md:h-[50px] rounded-full bg-white/15 backdrop-blur-md border-none text-white text-2xl md:text-3xl cursor-pointer z-[3] transition duration-300 hover:bg-white/30 hover:scale-105">›</button>
 
-    <div class="hero-content">
-      <h1>Selamat datang di KPMB Makassar</h1>
-      <p>Wadah Kebersamaan Mahasiswa Balikpapan di Makassar</p>
+    <div class="hero-content relative z-[2] p-5">
+      <h1 class="text-[34px] md:text-[56px] mb-3 [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">Selamat datang di KPMB Makassar</h1>
+      <p class="text-[15px] md:text-xl [text-shadow:0_2px_8px_rgba(0,0,0,0.4)]">Wadah Kebersamaan Mahasiswa Balikpapan di Makassar</p>
     </div>
   </section>
 
-  <!-- FAQ SINGKAT -->
-  <section class="page container" id="faq-home">
-    <h2>Pertanyaan Umum</h2>
-
-    <div class="card">
-      <h3>Siapa yang bisa bergabung di KPMB?</h3>
-      <p>Mahasiswa asal Balikpapan yang kuliah di Makassar.</p>
-
-      <h3>Apa tujuan organisasi ini?</h3>
-      <p>Membangun kebersamaan mahasiswa daerah.</p>
-    </div>
-  </section>
   <!-- FAQ DETAIL -->
-  <section class="faq-section reveal">
+  <section class="faq-section reveal py-20 bg-[#f8fafc]">
 
     <div class="container">
 
-      <div class="section-title">
-        <h2>FAQ KPMB</h2>
-        <p>Pertanyaan yang sering ditanyakan</p>
+      <div class="section-title mb-9">
+        <h2 class="text-3xl md:text-[42px] font-bold text-[#1e293b] mb-2.5">FAQ KPMB</h2>
+        <p class="text-lg text-[#64748b]">Pertanyaan yang sering ditanyakan</p>
       </div>
 
-      <div class="faq-container">
+      <div class="faq-container max-w-[850px] mx-auto mt-10">
 
-        <div class="faq-item">
-          <button class="faq-question">
+        <div class="faq-item group bg-white mb-[18px] rounded-2xl overflow-hidden shadow-[0_5px_16px_rgba(0,0,0,0.08)]">
+          <button class="faq-question w-full bg-transparent border-none px-6 py-[22px] flex justify-between items-center text-[17px] font-semibold cursor-pointer">
+            Siapa yang bisa bergabung di KPMB?
+            <span class="text-2xl transition duration-300 group-[.active]:rotate-45">+</span>
+          </button>
+
+          <div class="faq-answer overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0 group-[.active]:max-h-[300px]">
+            <p class="px-6 pb-[22px] leading-[1.8] text-[#555]">Mahasiswa asal Balikpapan yang kuliah di Makassar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item group bg-white mb-[18px] rounded-2xl overflow-hidden shadow-[0_5px_16px_rgba(0,0,0,0.08)]">
+          <button class="faq-question w-full bg-transparent border-none px-6 py-[22px] flex justify-between items-center text-[17px] font-semibold cursor-pointer">
             Apa itu KPMB Makassar?
-            <span>+</span>
+            <span class="text-2xl transition duration-300 group-[.active]:rotate-45">+</span>
           </button>
 
-          <div class="faq-answer">
-            <p>KPMB Makassar adalah organisasi mahasiswa asal Balikpapan yang sedang menempuh pendidikan di Makassar.</p>
+          <div class="faq-answer overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0 group-[.active]:max-h-[300px]">
+            <p class="px-6 pb-[22px] leading-[1.8] text-[#555]">KPMB Makassar adalah organisasi mahasiswa asal Balikpapan yang sedang menempuh pendidikan di Makassar.</p>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">
+        <div class="faq-item group bg-white mb-[18px] rounded-2xl overflow-hidden shadow-[0_5px_16px_rgba(0,0,0,0.08)]">
+          <button class="faq-question w-full bg-transparent border-none px-6 py-[22px] flex justify-between items-center text-[17px] font-semibold cursor-pointer">
+            Apa tujuan organisasi ini?
+            <span class="text-2xl transition duration-300 group-[.active]:rotate-45">+</span>
+          </button>
+
+          <div class="faq-answer overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0 group-[.active]:max-h-[300px]">
+            <p class="px-6 pb-[22px] leading-[1.8] text-[#555]">Membangun kebersamaan mahasiswa daerah.</p>
+          </div>
+        </div>
+
+        <div class="faq-item group bg-white mb-[18px] rounded-2xl overflow-hidden shadow-[0_5px_16px_rgba(0,0,0,0.08)]">
+          <button class="faq-question w-full bg-transparent border-none px-6 py-[22px] flex justify-between items-center text-[17px] font-semibold cursor-pointer">
             Bagaimana cara bergabung?
-            <span>+</span>
+            <span class="text-2xl transition duration-300 group-[.active]:rotate-45">+</span>
           </button>
 
-          <div class="faq-answer">
-            <p>Kamu bisa menghubungi pengurus KPMB melalui Instagram, WhatsApp, atau datang langsung ke sekretariat.</p>
+          <div class="faq-answer overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0 group-[.active]:max-h-[300px]">
+            <p class="px-6 pb-[22px] leading-[1.8] text-[#555]">Kamu bisa menghubungi pengurus KPMB melalui Instagram, WhatsApp, atau datang langsung ke sekretariat.</p>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">
+        <div class="faq-item group bg-white mb-[18px] rounded-2xl overflow-hidden shadow-[0_5px_16px_rgba(0,0,0,0.08)]">
+          <button class="faq-question w-full bg-transparent border-none px-6 py-[22px] flex justify-between items-center text-[17px] font-semibold cursor-pointer">
             Apa saja kegiatan KPMB?
-            <span>+</span>
+            <span class="text-2xl transition duration-300 group-[.active]:rotate-45">+</span>
           </button>
 
-          <div class="faq-answer">
-            <p>KPMB memiliki kegiatan sosial, pendidikan, pengembangan SDM, olahraga, seminar, hingga pengabdian masyarakat.</p>
+          <div class="faq-answer overflow-hidden transition-[max-height] duration-300 ease-in-out max-h-0 group-[.active]:max-h-[300px]">
+            <p class="px-6 pb-[22px] leading-[1.8] text-[#555]">KPMB memiliki kegiatan sosial, pendidikan, pengembangan SDM, olahraga, seminar, hingga pengabdian masyarakat.</p>
           </div>
         </div>
 
@@ -157,26 +169,26 @@
     </div>
 
   </section>
-  <section class="stats-section">
+  <section class="stats-section grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-5 px-4 md:px-[8%] py-6 md:py-12 bg-white">
 
-  <div class="stat-box">
-    <h2>200+</h2>
-    <p>Alumni</p>
+  <div class="stat-box bg-[var(--secondary)] p-[15px_8px] sm:p-[18px_10px] md:p-[30px] rounded-xl md:rounded-2xl text-center shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5">
+    <h2 class="text-[22px] sm:text-[26px] md:text-[42px] text-[#ebecee]">200+</h2>
+    <p class="mt-1 md:mt-2 text-[12px] sm:text-[13px] md:text-base text-[#fffbfb]">Alumni</p>
   </div>
 
-  <div class="stat-box">
-    <h2>15+</h2>
-    <p>Anggota Aktif</p>
+  <div class="stat-box bg-[var(--secondary)] p-[15px_8px] sm:p-[18px_10px] md:p-[30px] rounded-xl md:rounded-2xl text-center shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5">
+    <h2 class="text-[22px] sm:text-[26px] md:text-[42px] text-[#ebecee]">15+</h2>
+    <p class="mt-1 md:mt-2 text-[12px] sm:text-[13px] md:text-base text-[#fffbfb]">Anggota Aktif</p>
   </div>
 
-  <div class="stat-box">
-    <h2>10+</h2>
-    <p>Kegiatan</p>
+  <div class="stat-box bg-[var(--secondary)] p-[15px_8px] sm:p-[18px_10px] md:p-[30px] rounded-xl md:rounded-2xl text-center shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5">
+    <h2 class="text-[22px] sm:text-[26px] md:text-[42px] text-[#ebecee]">10+</h2>
+    <p class="mt-1 md:mt-2 text-[12px] sm:text-[13px] md:text-base text-[#fffbfb]">Kegiatan</p>
   </div>
 
-  <div class="stat-box">
-    <h2>10+</h2>
-    <p>Kampus</p>
+  <div class="stat-box bg-[var(--secondary)] p-[15px_8px] sm:p-[18px_10px] md:p-[30px] rounded-xl md:rounded-2xl text-center shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5">
+    <h2 class="text-[22px] sm:text-[26px] md:text-[42px] text-[#ebecee]">10+</h2>
+    <p class="mt-1 md:mt-2 text-[12px] sm:text-[13px] md:text-base text-[#fffbfb]">Kampus</p>
   </div>
 
 </section>
@@ -222,26 +234,26 @@
 
     </div>
 
-    <div class="cards">
+    <div class="cards flex flex-wrap justify-center gap-[18px] mt-[25px]">
 
-      <div class="card" onclick="bukaNilai()">
-        <h3>Nilai Organisasi</h3>
-        <p>Klik untuk melihat nilai organisasi.</p>
+      <div class="card w-full md:w-[250px] bg-white p-[18px] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5 cursor-pointer" onclick="bukaNilai()">
+        <h3 class="my-1">Nilai Organisasi</h3>
+        <p class="text-[#555] text-sm">Klik untuk melihat nilai organisasi.</p>
       </div>
 
-      <div class="card" onclick="bukaSejarah()">
-        <h3>Sejarah</h3>
-        <p>Klik untuk membaca sejarah KPMB.</p>
+      <div class="card w-full md:w-[250px] bg-white p-[18px] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5 cursor-pointer" onclick="bukaSejarah()">
+        <h3 class="my-1">Sejarah</h3>
+        <p class="text-[#555] text-sm">Klik untuk membaca sejarah KPMB.</p>
       </div>
 
-      <div class="card" onclick="bukaDatabase()">
-        <h3>Database</h3>
-        <p>Data warga dan alumni.</p>
+      <div class="card w-full md:w-[250px] bg-white p-[18px] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5 cursor-pointer" onclick="bukaDatabaseGate()">
+        <h3 class="my-1">Database</h3>
+        <p class="text-[#555] text-sm">Data warga dan alumni.</p>
       </div>
 
-      <div class="card" onclick="bukaVisiMisi()">
-        <h3>Visi Misi</h3>
-        <p>Visi dan misi organisasi.</p>
+      <div class="card w-full md:w-[250px] bg-white p-[18px] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1.5 cursor-pointer" onclick="bukaVisiMisi()">
+        <h3 class="my-1">Visi Misi</h3>
+        <p class="text-[#555] text-sm">Visi dan misi organisasi.</p>
       </div>
 
     </div>
@@ -253,76 +265,76 @@
   <section class="page container" id="struktur">
     <h2>Struktur Pengurus</h2>
 
-    <div class="struktur-grid">
-      <div class="box">
-        <img src="asset/img/ketua.jpg" alt="Ketua KPMB Makassar - Dhiyani Fadilatuh Iffah" loading="lazy">
+    <div class="struktur-grid grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5 mt-5">
+      <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+        <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/ketua.jpg" alt="Ketua KPMB Makassar - Dhiyani Fadilatuh Iffah" loading="lazy">
         <h3>Dhiyani Fadilatuh Iffah</h3>
         <p>Ketua</p>
       </div>
       
-      <div class="box">
-        <img src="asset/img/wakil-ketua.jpg" alt="Wakil Ketua KPMB Makassar - Adharian Nur Al Janni" loading="lazy">
+      <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+        <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/wakil-ketua.jpg" alt="Wakil Ketua KPMB Makassar - Adharian Nur Al Janni" loading="lazy">
         <h3>Adharian Nur Al Janni</h3>
         <p>Wakil Ketua</p>
       </div>
 
-      <div class="box">
-        <img src="asset/img/sekretaris.jpg" alt="Sekretaris KPMB Makassar - Marshela" loading="lazy">
+      <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+        <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/sekretaris.jpg" alt="Sekretaris KPMB Makassar - Marselah" loading="lazy">
         <h3>Marselah</h3>
         <p>Sekretaris</p>
     </div>
-    <div class="box">
-      <img src="asset/img/bendahara.jpg" alt="Bendahara KPMB Makassar - Reza Anjelina Cahya" loading="lazy">
+    <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/bendahara.jpg" alt="Bendahara KPMB Makassar - Reza Anjelina Cahya" loading="lazy">
       <h3>Reza Anjelina Cahya</h3>
       <p>Bendahara Umum</p>
     </div>
-  <div class="box">
-      <img src="asset/img/psdm.jpg" alt="Koordinator PSDM - Hartika Julianty Nursuhada" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/psdm.jpg" alt="Koordinator PSDM - Hartika Julianty Nursuhada" loading="lazy">
       <h3>Hartika Julianty Nursuhada</h3>
       <p>Koordinator PSDM</p>
   </div>
-  <div class="box">
-      <img src="asset/img/manda.jpg" alt="Unit Manuntung Study Club - Amanda Nur Fadilah" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/manda.jpg" alt="Unit Manuntung Study Club - Amanda Nur Fadilah" loading="lazy">
       <h3>Amanda Nur Fadilah</h3>
       <p>Unit Manuntung Club</p>
   </div>
-  <div class="box">
-      <img src="asset/img/daniel.jpg" alt="Unit Manuntung English - Daniel Putra Natama Lumban Gaol" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/daniel.jpg" alt="Unit Manuntung English - Daniel Putra Natama Lumban Gaol" loading="lazy">
       <h3>Daniel Putra Natama Lumban Gaol</h3>
       <p>Unit Manuntung English</p>
   </div>
-  <div class="box">
-      <img src="asset/img/humas.png" alt="Koordinator Humas - Achmad Nurwahid" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/humas.png" alt="Koordinator Humas - Achmad Nurwahid" loading="lazy">
       <h3>Achmad Nurwahid</h3>
       <p>Koordinator Humas</p>
   </div>
-  <div class="box">
-      <img src="asset/img/samuel.jpg" alt="Unit Kemahasiswaan dan Keorganisasian - Samuel Putra Natama Lumban Gaol" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/samuel.jpg" alt="Unit Kemahasiswaan dan Keorganisasian - Samuel Putra Natama Lumban Gaol" loading="lazy">
       <h3>Samuel Putra Natama Lumban Gaol </h3>
       <p>Unit Kemahasiswaan</p>
   </div>
-  <div class="box">
-      <img src="asset/img/samuel.jpg" alt="Unit Informasi Komunikasi - Samuel Putra Natama Lumban Gaol" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/samuel.jpg" alt="Unit Informasi Komunikasi - Samuel Putra Natama Lumban Gaol" loading="lazy">
       <h3> Samuel Putra Natama Lumban Gaol</h3>
       <p>Unit Informasi dan Komunikasi</p>
   </div>
-  <div class="box">
-      <img src="asset/img/pari.jpg" alt="Unit Media dan Kreatif - Afkhar Fahry Wardana" loading="lazy">
-      <h3>Afkhar Fahry Wardana</h3>
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/pari.jpg" alt="Unit Media dan Kreatif - Afkhar Fakhriy Wardana" loading="lazy">
+      <h3>Afkhar Fakhriy Wardana</h3>
       <p>Unit Media dan Kreatif</p>
   </div>
-  <div class="box">
-      <img src="asset/img/dewi.jpg" alt="Kepala Biro - Dewi Hardiani" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/dewi.jpg" alt="Kepala Biro - Dewi Hardiani" loading="lazy">
       <h3>Dewi Hardiani</h3> 
       <p>Kepala Biro</p>
   </div>
-  <div class="box">
-      <img src="asset/img/ermi.png" alt="Unit Keuangan - Ermi" loading="lazy">
+  <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/ermi.png" alt="Unit Keuangan - Ermi" loading="lazy">
       <h3>Ermi</h3>
       <p>Unit Keuangan</p>  
   </div>  
-   <div class="box">
-      <img src="asset/img/mita.jpg" alt="Unit Inventari dan Logistik - Andi Miftahul Jannah" loading="lazy">
+   <div class="box bg-white p-5 rounded-[10px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex flex-col">
+      <img class="w-full h-[260px] object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-[1.03]" src="asset/img/mita.jpg" alt="Unit Inventari dan Logistik - Andi Miftahul Jannah" loading="lazy">
       <h3>Andi Miftahul Jannah</h3>
       <p>Unit Inventaris dan Logistik</p>  
   </div>
@@ -658,7 +670,14 @@
 
   <h2>Divisi KPMB</h2>
 
-  
+  <div class="divisi-admin-bar">
+    <button id="btnLoginDivisi" class="btn-admin" onclick="bukaDivisiLogin()">Login Admin</button>
+    <div id="divisiAdminControls" class="divisi-admin-controls" style="display:none;">
+      <button class="btn-admin btn-admin-primary" onclick="bukaFormAnggota('tambah')">+ Tambah Anggota</button>
+      <button class="btn-admin btn-admin-logout" onclick="logoutDivisi()">Logout</button>
+    </div>
+  </div>
+
   <div id="anggotaDivisi"></div>
 
 </section>
@@ -693,6 +712,8 @@
         <p>Klik untuk membaca</p>
       </div>
     </div>
+
+  </div>
 </section>
 <div id="beritaModal" class="berita-modal" onclick="tutupBerita(event)">
   <div class="berita-popup">
@@ -706,18 +727,18 @@
 <section class="page container" id="galeri">
   <h2>Galeri Kegiatan</h2>
 
-  <div class="galeri-grid">
-    <img src="asset/img/k1.jpg" alt="Galeri kegiatan KPMB Makassar - foto 1" loading="lazy">
-    <img src="asset/img/k2.jpg" alt="Galeri kegiatan KPMB Makassar - foto 2" loading="lazy">
-    <img src="asset/img/k3.jpg" alt="Galeri kegiatan KPMB Makassar - foto 3" loading="lazy">
-    <img src="asset/img/k4.jpg" alt="Galeri kegiatan KPMB Makassar - foto 4" loading="lazy">
-    <img src="asset/img/k5.jpeg" alt="Galeri kegiatan KPMB Makassar - foto 5" loading="lazy">
-    <img src="asset/img/k6.jpeg" alt="Galeri kegiatan KPMB Makassar - foto 6" loading="lazy">
-    <img src="asset/img/k7.jpeg" alt="Galeri kegiatan KPMB Makassar - foto 7" loading="lazy">
-    <img src="asset/img/muswam2.jpg" alt="Galeri kegiatan KPMB Makassar - foto 8" loading="lazy">
-    <img src="asset/img/rakpel2.jpg" alt="Galeri kegiatan KPMB Makassar - foto 9" loading="lazy">
-    <img src="asset/img/ldk6.jpg" alt="Galeri kegiatan KPMB Makassar - foto 10" loading="lazy">
-    <img src="asset/img/ldk1.jpg" alt="Galeri kegiatan KPMB Makassar - foto 11" loading="lazy">
+  <div class="galeri-grid grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[18px] mt-5">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k1.jpg" alt="Galeri kegiatan KPMB Makassar - foto 1" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k2.jpg" alt="Galeri kegiatan KPMB Makassar - foto 2" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k3.jpg" alt="Galeri kegiatan KPMB Makassar - foto 3" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k4.jpg" alt="Galeri kegiatan KPMB Makassar - foto 4" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k5.jpeg" alt="Galeri kegiatan KPMB Makassar - foto 5" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k6.jpeg" alt="Galeri kegiatan KPMB Makassar - foto 6" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/k7.jpeg" alt="Galeri kegiatan KPMB Makassar - foto 7" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/muswam2.jpg" alt="Galeri kegiatan KPMB Makassar - foto 8" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/rakpel2.jpg" alt="Galeri kegiatan KPMB Makassar - foto 9" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/ldk6.jpg" alt="Galeri kegiatan KPMB Makassar - foto 10" loading="lazy">
+    <img class="w-full h-[180px] object-cover rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 hover:scale-[1.04]" src="asset/img/ldk1.jpg" alt="Galeri kegiatan KPMB Makassar - foto 11" loading="lazy">
 
   </div>
 </section>
@@ -2056,19 +2077,96 @@
     <h2>Nilai Organisasi KPMB</h2>
 
     <div class="nilai-box">
-      <p>
-     <H3>PASAL 5 (ASAS)</H3>
+      <h3>PASAL 5 (ASAS)</h3>
+      <p>Keluarga Pelajar Mahasiswa Balikpapan (KPMB) Makassar berasaskan kekeluargaan dan musyawarah untuk mencapai mufakat.</p>
 
-      Keluarga Pelajar Mahasiswa Balikpapan (KPMB) Makassar berasaskan kekeluargaan dan musyawarah untuk mencapai mufakat.</p>
-      </p>
-     <H3>PASAL 6 (SIFAT)</H3>
-
-      Keluarga Pelajar Mahasiswa Balikpapan (KPMB) Makassar bersifat sosial, ilmiah dan kekeluargaan.
-      </p>
-
- 
-
+      <h3>PASAL 6 (SIFAT)</h3>
+      <p>Keluarga Pelajar Mahasiswa Balikpapan (KPMB) Makassar bersifat sosial, ilmiah dan kekeluargaan.</p>
     </div>
+
+  </div>
+
+</div>
+
+<!-- ================= LOGIN ADMIN DIVISI ================= -->
+<div id="divisiLoginModal" class="modal">
+
+  <div class="modal-content login-modal-content">
+
+    <button class="close-popup" onclick="closeDivisiLogin()">✕</button>
+
+    <h2>Login Admin Divisi</h2>
+    <p class="login-desc">Login untuk mengelola data anggota divisi.</p>
+
+    <form id="divisiLoginForm" class="login-form" onsubmit="return cekLoginDivisi(event)">
+      <input type="email" id="divisiEmail" class="login-input" placeholder="Email" autocomplete="off">
+      <input type="password" id="divisiPassword" class="login-input" placeholder="Password" autocomplete="off">
+      <p id="divisiLoginError" class="login-error">Email atau password salah.</p>
+      <button type="submit" class="login-submit-btn">Masuk</button>
+    </form>
+
+  </div>
+
+</div>
+
+<!-- ================= FORM TAMBAH / EDIT ANGGOTA DIVISI ================= -->
+<div id="anggotaFormModal" class="modal">
+
+  <div class="modal-content login-modal-content anggota-form-content">
+
+    <button class="close-popup" onclick="closeFormAnggota()">✕</button>
+
+    <h2 id="anggotaFormTitle">Tambah Anggota</h2>
+
+    <form id="anggotaForm" class="login-form" onsubmit="return simpanAnggotaForm(event)">
+      <input type="hidden" id="anggotaId">
+      <input type="hidden" id="anggotaDivisiField">
+
+      <label class="form-label">Nama</label>
+      <input type="text" id="anggotaNama" class="login-input" required>
+
+      <label class="form-label">Jabatan / Unit</label>
+      <input type="text" id="anggotaUnit" class="login-input" placeholder='Contoh: "Koordinator" atau "Media & Kreatif"' required>
+
+      <label class="form-label">Peran</label>
+      <select id="anggotaPeran" class="login-input">
+        <option value="anggota">Anggota</option>
+        <option value="koordinator">Koordinator</option>
+      </select>
+
+      <label class="form-label">Program Kerja (opsional)</label>
+      <input type="text" id="anggotaProgram" class="login-input">
+
+      <label class="form-label">Deskripsi Tugas</label>
+      <textarea id="anggotaDeskripsi" class="login-input anggota-textarea" rows="3" required></textarea>
+
+      <label class="form-label">Foto</label>
+      <input type="file" id="anggotaFoto" class="login-input" accept="image/*">
+      <img id="anggotaFotoPreview" class="anggota-foto-preview" style="display:none;">
+
+      <p id="anggotaFormError" class="login-error">Gagal menyimpan data, coba lagi.</p>
+      <button type="submit" class="login-submit-btn" id="anggotaSubmitBtn">Simpan</button>
+    </form>
+
+  </div>
+
+</div>
+
+<!-- ================= LOGIN DATABASE (WARGA & ALUMNI) ================= -->
+<div id="loginModal" class="modal">
+
+  <div class="modal-content login-modal-content">
+
+    <button class="close-popup" onclick="closeLogin()">✕</button>
+
+    <h2>Login Diperlukan</h2>
+    <p class="login-desc">Masukkan password untuk mengakses data Warga &amp; Alumni.</p>
+
+    <form id="loginForm" class="login-form" onsubmit="return cekLoginDatabase(event)">
+      <input type="password" id="loginPassword" class="login-input" placeholder="Password" autocomplete="off">
+      <p id="loginError" class="login-error">Password salah, coba lagi.</p>
+      <button type="submit" class="login-submit-btn">Masuk</button>
+    </form>
 
   </div>
 
@@ -2093,6 +2191,7 @@
 
 <!-- TARUH SCRIPT DI SINI -->
 <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
 
 <button id="backToTopBtn" class="back-to-top-btn" onclick="scrollToTop()" title="Kembali ke atas">
